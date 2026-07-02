@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Us — SIGN FUTURE ADVERTISING</title>
+  <meta name="description" content="Contact SIGN FUTURE ADVERTISING — 3D LED signboard specialist in Malaysia. Free measurement & quotation. Call, WhatsApp, email or send us a message." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0c0b09; --bg-2: #15120d; --text: #f6f1e8; --muted: #ab9f8d;
+      --gold: #e0a64e; --gold-lite: #f4d28c; --accent: linear-gradient(100deg, #f4d28c 0%, #d4903a 100%);
+      --line: rgba(224, 166, 78, 0.20); --line-2: rgba(224, 166, 78, 0.42); --glow: 0 0 36px rgba(224, 166, 78, 0.35);
+      --glow-text: 0 0 10px rgba(244, 210, 140, 0.55), 0 0 34px rgba(224, 166, 78, 0.45);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--text); font-family: "Inter", "Noto Sans SC", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif; -webkit-font-smoothing: antialiased; overflow-x: hidden; line-height: 1.7; }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+    .wrap { width: min(1180px, 100%); margin: 0 auto; padding-inline: 28px; }
+    .gold { color: var(--gold-lite); text-shadow: var(--glow-text); }
+
+    .btn { display: inline-flex; align-items: center; gap: 9px; padding: 13px 22px; border-radius: 10px; font-size: 14px; font-weight: 700; border: 1px solid var(--line-2); transition: transform .2s, box-shadow .2s, background .2s, color .2s; cursor: pointer; }
+    .btn svg { width: 18px; height: 18px; }
+    .btn:hover { transform: translateY(-2px); }
+    .btn.gold { background: var(--accent); color: #2a1c08; border-color: transparent; box-shadow: 0 8px 26px rgba(224, 166, 78, 0.32); }
+    .btn.outline { background: rgba(255, 255, 255, 0.02); color: var(--text); }
+    .btn.outline:hover { border-color: var(--gold); color: var(--gold-lite); }
+    .btn.wa { background: #25D366; color: #fff; border-color: transparent; }
+    .btn.block { width: 100%; justify-content: center; }
+
+    /* Nav */
+    .nav { position: sticky; top: 0; z-index: 100; background: rgba(12, 11, 9, 0.97); backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); }
+    .nav-inner { display: flex; align-items: center; gap: 24px; height: 74px; }
+    .brand { display: inline-flex; align-items: center; gap: 11px; }
+    .brand-logo { height: 42px; width: auto; display: block; }
+    @media (max-width: 560px) { .brand-logo { height: 34px; } }
+    .nav-links { display: flex; gap: 26px; margin-left: auto; }
+    .nav-links a { font-size: 13px; font-weight: 700; letter-spacing: 1px; color: var(--muted); transition: color .2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--gold-lite); }
+    .nav-right { display: flex; align-items: center; gap: 18px; margin-left: 26px; }
+    .lang { display: flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 700; }
+    .lang button { background: none; border: 0; color: var(--muted); cursor: pointer; font: inherit; padding: 2px; transition: color .2s; }
+    .lang button.on { color: var(--gold-lite); }
+    .lang i { color: var(--line-2); font-style: normal; }
+
+    /* Page head */
+    .page-head { text-align: center; padding: 64px 0 6px; position: relative; }
+    .page-head::before { content: ""; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 100% at 50% 0%, rgba(224,166,78,.14), transparent 60%); pointer-events: none; }
+    .page-head .eyebrow { font-size: 12px; letter-spacing: .32em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+    .page-head h1 { margin-top: 14px; font-size: clamp(32px, 5vw, 52px); font-weight: 900; }
+    .page-head p { margin: 16px auto 0; max-width: 600px; color: var(--muted); }
+
+    /* Contact layout */
+    .contact-grid { display: grid; grid-template-columns: 1fr 1.05fr; gap: 30px; align-items: start; margin: 50px auto; }
+    .card { border: 1px solid var(--line); border-radius: 18px; background: linear-gradient(160deg, rgba(255,255,255,.04), rgba(255,255,255,.01)); padding: 32px; }
+    .card h2 { font-size: 22px; font-weight: 800; }
+    .cinfo { list-style: none; margin: 22px 0 0; padding: 0; display: grid; gap: 18px; }
+    .cinfo li { display: flex; gap: 14px; align-items: flex-start; font-size: 15px; }
+    .ci-ico { width: 44px; height: 44px; flex: none; display: grid; place-items: center; border-radius: 12px; color: #fff; background: linear-gradient(135deg, #e6b25a, #c47f2a); box-shadow: 0 0 16px rgba(224,166,78,.35); }
+    .ci-ico svg { width: 20px; height: 20px; }
+    .cinfo b { display: block; color: var(--text); font-weight: 700; margin-bottom: 3px; }
+    .cinfo a, .cinfo span { color: var(--muted); }
+    .cinfo a:hover { color: var(--gold-lite); }
+    .quick { display: flex; gap: 12px; margin-top: 26px; flex-wrap: wrap; }
+    .quick .btn { flex: 1; min-width: 130px; }
+    .social { display: flex; gap: 10px; margin-top: 24px; }
+    .social a { width: 40px; height: 40px; border-radius: 10px; border: 1px solid var(--line-2); display: grid; place-items: center; color: var(--gold-lite); font-weight: 700; transition: background .2s, transform .2s; }
+    .social a:hover { background: rgba(224,166,78,.12); transform: translateY(-2px); }
+    .social a svg { width: 18px; height: 18px; }
+
+    form.cform { display: grid; gap: 14px; margin-top: 22px; }
+    .frow { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .cform input, .cform select, .cform textarea { width: 100%; padding: 13px 15px; border-radius: 11px; border: 1px solid var(--line); background: rgba(255,255,255,.03); color: var(--text); font: inherit; font-size: 15px; }
+    .cform select { appearance: none; cursor: pointer; }
+    .cform option { background: #15120d; color: var(--text); }
+    .cform textarea { min-height: 130px; resize: vertical; }
+    .cform input:focus, .cform select:focus, .cform textarea:focus { outline: none; border-color: var(--gold); }
+    .cform .note { color: var(--muted); font-size: 13px; margin-top: -2px; }
+
+    .map-wrap { border-radius: 18px; overflow: hidden; border: 1px solid var(--line); height: 380px; margin-bottom: 70px; }
+    .map-wrap iframe { width: 100%; height: 100%; border: 0; filter: grayscale(.5) brightness(.85) contrast(1.05); }
+    .map-head { text-align: center; margin-bottom: 22px; }
+    .map-head h2 { font-size: clamp(24px, 3.4vw, 34px); font-weight: 800; }
+
+    footer { border-top: 1px solid var(--line); padding: 36px 0; background: var(--bg-2); text-align: center; color: var(--muted); font-size: 13px; }
+    footer a { color: var(--gold-lite); }
+
+    .wa-float { position: fixed; right: 22px; bottom: 22px; z-index: 200; width: 58px; height: 58px; border-radius: 50%; background: #25D366; color: #fff; display: grid; place-items: center; box-shadow: 0 8px 24px rgba(37,211,102,.45); transition: transform .2s, box-shadow .2s; }
+    .wa-float:hover { transform: scale(1.08); }
+    .wa-float svg { width: 32px; height: 32px; }
+    .wa-float::after { content: ""; position: absolute; inset: 0; border-radius: 50%; animation: waPulse 2.2s infinite; }
+    @keyframes waPulse { 0% { box-shadow: 0 0 0 0 rgba(37,211,102,.5); } 70% { box-shadow: 0 0 0 16px rgba(37,211,102,0); } 100% { box-shadow: 0 0 0 0 rgba(37,211,102,0); } }
+
+    @media (max-width: 860px) {
+      .nav-links { display: none; }
+      .nav-right { margin-left: auto; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .frow { grid-template-columns: 1fr; }
+    }
+    @media (prefers-reduced-motion: reduce) { .wa-float::after { animation: none; } }
+  </style>
+</head>
+<body id="top">
+  <!-- Nav -->
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a href="index.html" class="brand"><img class="brand-logo" src="images/logo.png" alt="SIGN FUTURE ADVERTISING" /></a>
+      <nav class="nav-links">
+        <a href="index.html" data-i18n="nav.home">Home</a>
+        <a href="index.html#about" data-i18n="nav.about">About Us</a>
+        <a href="work.html" data-i18n="nav.work">Products</a>
+        <a href="contact.html" class="active" data-i18n="nav.contact">Contact</a>
+      </nav>
+      <div class="nav-right">
+        <div class="lang" id="lang"><button type="button" data-lang="en" class="on">EN</button><i>/</i><button type="button" data-lang="zh">中文</button></div>
+        <a class="btn gold" href="https://wa.me/60123456789" target="_blank" rel="noopener" data-i18n="nav.quote">Get Quote</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Head -->
+  <div class="wrap page-head">
+    <span class="eyebrow" data-i18n="ct.eyebrow">SIGN FUTURE ADVERTISING · MALAYSIA</span>
+    <h1 data-i18n="ct.title">Contact <span class="gold">Us</span></h1>
+    <p data-i18n="ct.sub">Free measurement &amp; quotation. Reach us any way you like — we usually reply within a few hours.</p>
+  </div>
+
+  <div class="wrap contact-grid">
+    <!-- Left: info -->
+    <div class="card">
+      <h2 data-i18n="ct.reach">Reach Us</h2>
+      <ul class="cinfo">
+        <li>
+          <span class="ci-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M5 4h4l2 5-3 2a12 12 0 0 0 5 5l2-3 5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2Z"/></svg></span>
+          <div><b data-i18n="ct.call">Call / WhatsApp</b><a href="https://wa.me/60123456789" target="_blank" rel="noopener">+60 12-345 6789</a></div>
+        </li>
+        <li>
+          <span class="ci-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span>
+          <div><b data-i18n="ct.email">Email</b><a href="mailto:enquiry@signfuture.my">enquiry@signfuture.my</a></div>
+        </li>
+        <li>
+          <span class="ci-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 21s7-6.5 7-11a7 7 0 1 0-14 0c0 4.5 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg></span>
+          <div><b data-i18n="ct.addr">Address</b><span data-i18n="ct.addrval">No. 00, Jalan Contoh 1, 47100 Puchong, Selangor, Malaysia</span></div>
+        </li>
+        <li>
+          <span class="ci-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+          <div><b data-i18n="ct.hours">Business Hours</b><span data-i18n="ct.hoursval">Monday – Saturday · 9:00am – 6:00pm</span></div>
+        </li>
+      </ul>
+      <div class="quick">
+        <a class="btn wa" href="https://wa.me/60123456789" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.1-1.3A10 10 0 1 0 12 2Zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 20Zm4.5-5.8c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.6.1l-.7.9c-.1.1-.3.2-.5.1a6.5 6.5 0 0 1-3.2-2.8c-.1-.2 0-.4.1-.5l.4-.5c.1-.1.1-.3 0-.4l-.7-1.7c-.2-.5-.4-.4-.6-.4h-.5c-.1 0-.4.1-.6.3a3 3 0 0 0-.9 2.2 5.3 5.3 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.6 4c1.1.5 1.6.5 2.1.4.4 0 1.3-.5 1.5-1.1.2-.5.2-1 .1-1.1Z"/></svg>
+          <span data-i18n="ct.wabtn">WhatsApp Us</span>
+        </a>
+        <a class="btn outline" href="tel:+60123456789"><span data-i18n="ct.callbtn">Call Now</span></a>
+      </div>
+      <div class="social">
+        <a href="#" aria-label="Facebook">f</a>
+        <a href="#" aria-label="Instagram">◎</a>
+        <a href="#" aria-label="TikTok">♪</a>
+        <a href="https://wa.me/60123456789" target="_blank" rel="noopener" aria-label="WhatsApp">✆</a>
+      </div>
+    </div>
+
+    <!-- Right: form -->
+    <div class="card">
+      <h2 data-i18n="ct.formtitle">Send Us a Message</h2>
+      <p class="note" data-i18n="ct.formnote" style="margin-top:8px;">Fill this in and it opens WhatsApp with your details ready to send.</p>
+      <form class="cform" id="cform">
+        <div class="frow">
+          <input name="name" data-i18n-ph="ct.ph.name" placeholder="Your name *" required />
+          <input name="phone" data-i18n-ph="ct.ph.phone" placeholder="Your phone *" required />
+        </div>
+        <input name="email" type="email" data-i18n-ph="ct.ph.email" placeholder="Email (optional)" />
+        <select name="service">
+          <option value="" data-i18n="ct.opt.0">Select a service…</option>
+          <option data-i18n="ct.opt.1">3D LED Signboard</option>
+          <option data-i18n="ct.opt.2">3D Signboard</option>
+          <option data-i18n="ct.opt.3">Neon Sign</option>
+          <option data-i18n="ct.opt.4">Lightbox / Normal Signboard</option>
+          <option data-i18n="ct.opt.5">Indoor / Office Signage</option>
+          <option data-i18n="ct.opt.6">Other</option>
+        </select>
+        <textarea name="msg" data-i18n-ph="ct.ph.msg" placeholder="Tell us what you need (size, location, logo…)"></textarea>
+        <button class="btn gold block" type="submit"><span data-i18n="ct.send">Send via WhatsApp</span></button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Map -->
+  <div class="wrap">
+    <div class="map-head"><h2 data-i18n="ct.maptitle">Find Us</h2></div>
+    <div class="map-wrap">
+      <iframe src="https://www.google.com/maps?q=Puchong%20Selangor%20Malaysia&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Map"></iframe>
+    </div>
+  </div>
+
+  <footer>
+    <div class="wrap">
+      <a href="index.html" data-i18n="back">&larr; Back to home</a>　·　© 2026 SIGN FUTURE ADVERTISING
+    </div>
+  </footer>
+
+  <a class="wa-float" href="https://wa.me/60123456789?text=Hi%2C%20I%27d%20like%20to%20ask%20about%203D%20signboards" target="_blank" rel="noopener" aria-label="WhatsApp">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.1-1.3A10 10 0 1 0 12 2Zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 20Zm4.5-5.8c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.6.1l-.7.9c-.1.1-.3.2-.5.1a6.5 6.5 0 0 1-3.2-2.8c-.1-.2 0-.4.1-.5l.4-.5c.1-.1.1-.3 0-.4l-.7-1.7c-.2-.5-.4-.4-.6-.4h-.5c-.1 0-.4.1-.6.3a3 3 0 0 0-.9 2.2 5.3 5.3 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.6 4c1.1.5 1.6.5 2.1.4.4 0 1.3-.5 1.5-1.1.2-.5.2-1 .1-1.1Z"/></svg>
+  </a>
+
+  <script>
+    const I18N = {
+      en: {
+        '_title': 'Contact Us — SIGN FUTURE ADVERTISING',
+        'nav.home': 'Home', 'nav.about': 'About Us', 'nav.work': 'Project Gallery', 'nav.services': 'Services', 'nav.contact': 'Contact Us', 'nav.quote': 'Get Quote',
+        'ct.eyebrow': 'SIGN FUTURE ADVERTISING · MALAYSIA',
+        'ct.title': 'Contact <span class="gold">Us</span>',
+        'ct.sub': 'Free measurement & quotation. Reach us any way you like — we usually reply within a few hours.',
+        'ct.reach': 'Reach Us', 'ct.call': 'Call / WhatsApp', 'ct.email': 'Email', 'ct.addr': 'Address', 'ct.hours': 'Business Hours',
+        'ct.addrval': 'No. 00, Jalan Contoh 1, 47100 Puchong, Selangor, Malaysia',
+        'ct.hoursval': 'Monday – Saturday · 9:00am – 6:00pm',
+        'ct.wabtn': 'WhatsApp Us', 'ct.callbtn': 'Call Now',
+        'ct.formtitle': 'Send Us a Message',
+        'ct.formnote': 'Fill this in and it opens WhatsApp with your details ready to send.',
+        'ct.ph.name': 'Your name *', 'ct.ph.phone': 'Your phone *', 'ct.ph.email': 'Email (optional)', 'ct.ph.msg': 'Tell us what you need (size, location, logo…)',
+        'ct.opt.0': 'Select a service…', 'ct.opt.1': '3D LED Signboard', 'ct.opt.2': '3D Signboard', 'ct.opt.3': 'Neon Sign', 'ct.opt.4': 'Lightbox / Normal Signboard', 'ct.opt.5': 'Indoor / Office Signage', 'ct.opt.6': 'Other',
+        'ct.send': 'Send via WhatsApp', 'ct.maptitle': 'Find Us', 'back': '← Back to home'
+      },
+      zh: {
+        '_title': '联系我们 — SIGN FUTURE ADVERTISING',
+        'nav.home': '首页', 'nav.about': '关于我们', 'nav.work': '作品集', 'nav.services': '服务', 'nav.contact': '联系我们', 'nav.quote': '获取报价',
+        'ct.eyebrow': 'SIGN FUTURE ADVERTISING · 马来西亚',
+        'ct.title': '联系<span class="gold">我们</span>',
+        'ct.sub': '免费测量与报价。任意方式联系我们 —— 通常几小时内回复。',
+        'ct.reach': '联系方式', 'ct.call': '电话 / WhatsApp', 'ct.email': '邮箱', 'ct.addr': '地址', 'ct.hours': '营业时间',
+        'ct.addrval': 'No. 00, Jalan Contoh 1, 47100 Puchong, Selangor, 马来西亚',
+        'ct.hoursval': '周一至周六 · 9:00 – 18:00',
+        'ct.wabtn': 'WhatsApp 联系', 'ct.callbtn': '拨打电话',
+        'ct.formtitle': '给我们留言',
+        'ct.formnote': '填好后会自动打开 WhatsApp，带上你的资料一键发送。',
+        'ct.ph.name': '你的名字 *', 'ct.ph.phone': '你的电话 *', 'ct.ph.email': '邮箱（选填）', 'ct.ph.msg': '告诉我们你的需求（尺寸、位置、Logo…）',
+        'ct.opt.0': '选择服务…', 'ct.opt.1': '3D LED 发光字招牌', 'ct.opt.2': '3D 立体招牌', 'ct.opt.3': '霓虹灯招牌', 'ct.opt.4': '灯箱 / 普通招牌', 'ct.opt.5': '室内 / 办公室招牌', 'ct.opt.6': '其他',
+        'ct.send': 'WhatsApp 发送', 'ct.maptitle': '到访我们', 'back': '← 返回首页'
+      }
+    };
+    function setLang(l) {
+      if (!I18N[l]) l = 'en';
+      document.documentElement.lang = (l === 'zh' ? 'zh-Hans' : 'en');
+      document.querySelectorAll('[data-i18n]').forEach((el) => { const v = I18N[l][el.getAttribute('data-i18n')]; if (v != null) el.innerHTML = v; });
+      document.querySelectorAll('[data-i18n-ph]').forEach((el) => { const v = I18N[l][el.getAttribute('data-i18n-ph')]; if (v != null) el.placeholder = v; });
+      if (I18N[l]._title) document.title = I18N[l]._title;
+      document.querySelectorAll('#lang button').forEach((b) => b.classList.toggle('on', b.dataset.lang === l));
+      try { localStorage.setItem('sf_lang', l); } catch (e) {}
+    }
+    (function () {
+      let saved = null; try { saved = localStorage.getItem('sf_lang'); } catch (e) {}
+      setLang(saved || 'en');
+      document.querySelectorAll('#lang button').forEach((b) => b.addEventListener('click', () => setLang(b.dataset.lang)));
+    })();
+
+    /* Form -> WhatsApp */
+    const f = document.getElementById('cform');
+    if (f) f.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const d = new FormData(f);
+      const text =
+        "Hi SIGN FUTURE, I'd like to enquire.\n\n" +
+        "Name: " + (d.get('name') || '') + "\n" +
+        "Phone: " + (d.get('phone') || '') + "\n" +
+        "Email: " + (d.get('email') || '') + "\n" +
+        "Service: " + (d.get('service') || '') + "\n" +
+        "Message: " + (d.get('msg') || '');
+      window.open('https://wa.me/60123456789?text=' + encodeURIComponent(text), '_blank');
+    });
+  </script>
+</body>
+</html>

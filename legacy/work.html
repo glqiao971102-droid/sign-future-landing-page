@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Our Work — SIGN FUTURE ADVERTISING</title>
+  <meta name="description" content="Our signboard portfolio — 3D LED signboards, 3D signage, stainless steel, normal signboards, neon signs and indoor signage by SIGN FUTURE ADVERTISING, Malaysia." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0c0b09; --bg-2: #15120d; --text: #f6f1e8; --muted: #ab9f8d;
+      --gold: #e0a64e; --gold-lite: #f4d28c; --accent: linear-gradient(100deg, #f4d28c 0%, #d4903a 100%);
+      --line: rgba(224, 166, 78, 0.20); --line-2: rgba(224, 166, 78, 0.42); --glow: 0 0 36px rgba(224, 166, 78, 0.35);
+      --glow-text: 0 0 10px rgba(244, 210, 140, 0.55), 0 0 34px rgba(224, 166, 78, 0.45);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--text); font-family: "Inter", "Noto Sans SC", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif; -webkit-font-smoothing: antialiased; overflow-x: hidden; line-height: 1.7; }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+    .wrap { width: min(1180px, 100%); margin: 0 auto; padding-inline: 28px; }
+    .gold { color: var(--gold-lite); text-shadow: var(--glow-text); }
+
+    .btn { display: inline-flex; align-items: center; gap: 9px; padding: 12px 22px; border-radius: 10px; font-size: 14px; font-weight: 700; border: 1px solid var(--line-2); transition: transform .2s, box-shadow .2s, background .2s, color .2s; cursor: pointer; }
+    .btn:hover { transform: translateY(-2px); }
+    .btn.gold { background: var(--accent); color: #2a1c08; border-color: transparent; box-shadow: 0 8px 26px rgba(224, 166, 78, 0.32); }
+    .btn.outline { background: rgba(255, 255, 255, 0.02); color: var(--text); }
+    .btn.outline:hover { border-color: var(--gold); color: var(--gold-lite); }
+
+    /* Nav */
+    .nav { position: sticky; top: 0; z-index: 100; background: rgba(12, 11, 9, 0.97); backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); }
+    .nav-inner { display: flex; align-items: center; gap: 24px; height: 74px; }
+    .brand { display: inline-flex; align-items: center; gap: 11px; }
+    .brand-logo { height: 42px; width: auto; display: block; }
+    @media (max-width: 560px) { .brand-logo { height: 34px; } }
+    .brand-mark { width: 38px; height: 38px; border-radius: 9px; display: grid; place-items: center; font-weight: 900; font-size: 15px; letter-spacing: 1px; color: #2a1c08; background: var(--accent); box-shadow: var(--glow); }
+    .brand-text { line-height: 1.05; }
+    .brand-text b { display: block; font-size: 16px; font-weight: 900; letter-spacing: 2px; }
+    .brand-text span { display: block; font-size: 9px; letter-spacing: 4px; color: var(--gold); }
+    .nav-links { display: flex; gap: 26px; margin-left: auto; }
+    .nav-links a { font-size: 13px; font-weight: 700; letter-spacing: 1px; color: var(--muted); transition: color .2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--gold-lite); }
+    .nav-right { display: flex; align-items: center; gap: 18px; margin-left: 26px; }
+    .lang { display: flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 700; }
+    .lang button { background: none; border: 0; color: var(--muted); cursor: pointer; font: inherit; padding: 2px; transition: color .2s; }
+    .lang button.on { color: var(--gold-lite); }
+    .lang i { color: var(--line-2); font-style: normal; }
+
+    /* Page head */
+    .page-head { text-align: center; padding: 70px 0 10px; position: relative; }
+    .page-head::before { content: ""; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 100% at 50% 0%, rgba(224,166,78,.14), transparent 60%); pointer-events: none; }
+    .page-head .eyebrow { font-size: 12px; letter-spacing: .32em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+    .page-head h1 { margin-top: 14px; font-size: clamp(32px, 5vw, 52px); font-weight: 900; }
+    .page-head p { margin: 16px auto 0; max-width: 640px; color: var(--muted); }
+
+    /* Category */
+    .cat { padding: 56px 0 0; }
+    .cat-head { display: flex; align-items: baseline; gap: 14px; border-bottom: 1px solid var(--line); padding-bottom: 14px; margin-bottom: 26px; }
+    .cat-head h2 { font-size: clamp(20px, 2.6vw, 28px); font-weight: 800; color: var(--gold-lite); }
+    .cat-head span { color: var(--muted); font-size: 13px; }
+    .cat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .gal { position: relative; aspect-ratio: 4 / 3; border-radius: 12px; overflow: hidden; border: 1px solid var(--line); background: radial-gradient(circle at 50% 35%, rgba(224,166,78,.14), transparent 62%), linear-gradient(160deg, #1a150d, #0e0b08); display: grid; place-items: center; transition: border-color .3s, transform .3s; }
+    .gal:hover { border-color: var(--line-2); transform: translateY(-4px); }
+    .gal img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .5s; }
+    .gal:hover img { transform: scale(1.06); }
+    .gal.noimg img { display: none; }
+    .gal-add { color: var(--muted); font-size: 12px; opacity: 0; }
+    .gal.noimg .gal-add { opacity: 1; }
+
+    .work-layout { display: grid; grid-template-columns: 250px 1fr; gap: 38px; align-items: start; }
+    .work-side { position: sticky; top: 96px; }
+    .work-side h3 { font-size: 20px; font-weight: 800; margin-bottom: 14px; }
+    .cat-search { width: 100%; padding: 10px 14px; border-radius: 10px; border: 1px solid var(--line); background: rgba(255,255,255,.03); color: var(--text); font: inherit; font-size: 14px; margin-bottom: 16px; }
+    .cat-search:focus { outline: none; border-color: var(--gold); }
+    .cat-nav { display: flex; flex-direction: column; }
+    .cat-nav a { padding: 11px 12px; border-bottom: 1px solid var(--line); color: var(--muted); font-size: 14px; font-weight: 600; transition: color .2s, padding-left .2s; }
+    .cat-nav a:hover, .cat-nav a.active { color: var(--gold-lite); padding-left: 18px; }
+    .cat-nav a.hide { display: none; }
+    .work-main .cat:first-child { padding-top: 0; }
+    @media (max-width: 820px) {
+      .work-layout { grid-template-columns: 1fr; gap: 22px; }
+      .work-side { position: static; }
+      .cat-nav { flex-direction: row; flex-wrap: wrap; gap: 8px; }
+      .cat-nav a { border: 1px solid var(--line); border-radius: 8px; padding: 8px 12px; }
+      .cat-nav a:hover, .cat-nav a.active { padding-left: 12px; border-color: var(--gold); }
+    }
+    footer { margin-top: 70px; border-top: 1px solid var(--line); padding: 36px 0; background: var(--bg-2); text-align: center; color: var(--muted); font-size: 13px; }
+    footer a { color: var(--gold-lite); }
+
+    @media (max-width: 900px) { .nav-links { display: none; } .nav-right { margin-left: auto; } .cat-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 560px) { .cat-grid { grid-template-columns: 1fr; } }
+
+    .wa-float { position: fixed; right: 22px; bottom: 22px; z-index: 200; width: 58px; height: 58px; border-radius: 50%; background: #25D366; color: #fff; display: grid; place-items: center; box-shadow: 0 8px 24px rgba(37,211,102,.45); transition: transform .2s, box-shadow .2s; }
+    .wa-float:hover { transform: scale(1.08); box-shadow: 0 12px 32px rgba(37,211,102,.6); }
+    .wa-float svg { width: 32px; height: 32px; }
+    .wa-float::after { content: ""; position: absolute; inset: 0; border-radius: 50%; animation: waPulse 2.2s infinite; }
+    @keyframes waPulse { 0% { box-shadow: 0 0 0 0 rgba(37,211,102,.5); } 70% { box-shadow: 0 0 0 16px rgba(37,211,102,0); } 100% { box-shadow: 0 0 0 0 rgba(37,211,102,0); } }
+    @media (max-width: 560px) { .wa-float { width: 52px; height: 52px; right: 16px; bottom: 16px; } .wa-float svg { width: 28px; height: 28px; } }
+    @media (prefers-reduced-motion: reduce) { .wa-float::after { animation: none; } }
+  </style>
+</head>
+<body id="top">
+  <!-- Nav -->
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a href="index.html" class="brand"><img class="brand-logo" src="images/logo.png" alt="SIGN FUTURE ADVERTISING" /></a>
+      <nav class="nav-links">
+        <a href="index.html" data-i18n="nav.home">Home</a>
+        <a href="index.html#about" data-i18n="nav.about">About Us</a>
+        <a href="work.html" class="active" data-i18n="nav.work">Products</a>
+        <a href="contact.html" data-i18n="nav.contact">Contact</a>
+      </nav>
+      <div class="nav-right">
+        <div class="lang" id="lang"><button type="button" data-lang="en" class="on">EN</button><i>/</i><button type="button" data-lang="zh">中文</button></div>
+        <a class="btn gold" href="https://wa.me/60123456789" target="_blank" rel="noopener" data-i18n="nav.quote">Get Quote</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Page head -->
+  <div class="wrap page-head">
+    <span class="eyebrow" data-i18n="pg.eyebrow">SIGN FUTURE ADVERTISING · PORTFOLIO</span>
+    <h1 data-i18n="pg.title">Our Work</h1>
+    <p data-i18n="pg.sub">Selected signboard projects across Malaysia, organised by type. New projects are added here.</p>
+  </div>
+
+  <div class="wrap work-layout">
+    <aside class="work-side">
+      <h3 data-i18n="cat.heading">Category</h3>
+      <input type="text" class="cat-search" id="catSearch" data-i18n-ph="cat.searchph" placeholder="Search categories…" />
+      <nav class="cat-nav">
+        <a href="#led" data-i18n="cat.led">3D LED Signboard</a>
+        <a href="#threeD" data-i18n="cat.3d">3D Signboard</a>
+        <a href="#steel" data-i18n="cat.steel">3D Stainless Steel Signboard</a>
+        <a href="#normal" data-i18n="cat.normal">Normal Signboard</a>
+        <a href="#neon" data-i18n="cat.neon">Neon Sign</a>
+        <a href="#indoor" data-i18n="cat.indoor">Indoor Signboard</a>
+      </nav>
+    </aside>
+    <main class="work-main">
+    <!-- 3D LED Signboard -->
+    <section class="cat" id="led">
+      <div class="cat-head"><h2 data-i18n="cat.led">3D LED Signboard</h2><span data-i18n="cat.led.s">Front-lit / back-lit channel letters</span></div>
+      <div class="cat-grid">
+        <a class="gal"><img src="images/work/led-1.jpg" alt="" onerror="this.closest('.gal').classList.add('noimg')"><span class="gal-add">images/work/led-1.jpg</span></a>
+        <a class="gal"><img src="images/work/led-2.jpg" alt="" onerror="this.closest('.gal').classList.add('noimg')"><span class="gal-add">images/work/led-2.jpg</span></a>
+        <a class="gal"><img src="images/work/led-3.jpg" alt="" onerror="this.closest('.gal').classList.add('noimg')"><span class="gal-add">images/work/led-3.jpg</span></a>
+        <a class="gal"><img src="images/work/led-4.jpg" alt="" onerror="this.closest('.gal').classList.add('noimg')"><span class="gal-add">images/work/led-4.jpg</span></a>
+        <a class="gal"><img src="images/work/led-5.jpg" alt="" onerror="this.closest('.gal').classList.add('noimg')"><span class="gal-add">images/work/led-5.jpg</span></a>
+        <a class="gal"><img src="images/work/led-6.jpg" alt="" onerror="this.closest('.gal').classList.add('noimg')"><span class="gal-add">images/work/led-6.jpg</span></a>
+      </div>
+    </section>
+
+    <!-- 3D Signboard -->
+    <section class="cat" id="threeD">
+      <div class="cat-head"><h2 data-i18n="cat.3d">3D Signboard</h2><span data-i18n="cat.3d.s">Built-up 3D lettering</span></div>
+      <div class="cat-grid">
+        <a class="gal"><img src="images/work/3d-1.jpg" alt="" onerror="this.closest('.gal').classList.add('noimg')"><span class="gal-add">images/work/3d-1.jpg</span></a>
+        <a class="gal"><img src="images/work/3d-2.jpg" alt="" onerror="this.closest('.gal').classList.add('noimg')"><span class="gal-add">images/work/3d-2.jpg</span></a>
+        <a class="gal"><img src="images/work/3d-3.jpg" alt="" onerror="this.closest('.gal').classList.add('noimg')"><span class="gal-add">images/work/3d-3.jpg</span></a>
+        <a class="gal"><img src="images/work/3d-4.jpg" alt="" onerror="this.closest('.gal').classList.add('noimg')"><span class="gal-add">images/work/3d-4.jpg</span></a>
+        <a class="gal"><img src="images/work/3d-5.jpg" alt="" onerror="this.closest('.gal').classList.add('noimg')"><span class="gal-add">images/work/3d-5.jpg</span></a>
+        <a class="gal"><img src="images/work/3d-6.jpg" alt="" onerror="this.closest('.gal').classList.add('noimg')"><span class="gal-add">images/work/3d-6.jpg</span></a>
+      </div>
+    </section>
+
+    <!-- 3D Stainless Steel -->
+    <section class="cat" id="steel">
+      <div class="cat-head"><h2 data-i18n="cat.steel">3D Stainless Steel Signboard</h2><span data-i18n="cat.steel.s">Brushed / mirror stainless letters</span></div>
+      <div class="cat-grid">
+        <a class="gal"><img src="images/work/steel-1.jpg" alt="" onerror="this.closest('.gal').classList.add('noimg')"><span class="gal-add">images/work/steel-1.jpg</span></a>
+        <a class="gal"><img src="images/work/steel-2.jpg" alt="" onerror="this.closest('.gal').classList.add('noimg')"><span class="gal-add">images/work/steel-2.jpg</span></a>
+        <a class="gal"><img src="images/work/steel-3.jpg" alt="" onerror="this.closest('.gal').classList.add('noimg')"><span class="gal-add">images/work/steel-3.jpg</span></a>
+        <a class="gal"><img src="images/work/steel-4.jpg" alt="" onerror="this.closest('.gal').classList.add('noimg')"><span class="gal-add">images/work/steel-4.jpg</span></a>
+        <a class="gal"><img src="images/work/steel-5.jpg" alt="" onerror="this.closest('.gal').classList.add('noimg')"><span class="gal-add">images/work/steel-5.jpg</span></a>
+        <a class="gal"><img src="images/work/steel-6.jpg" alt="" onerror="this.closest('.gal').classList.add('noimg')"><span class="gal-add">images/work/steel-6.jpg</span></a>
+      </div>
+    </section>
+
+    <!-- Normal Signboard -->
+    <section class="cat" id="normal">
+      <div class="cat-head"><h2 data-i18n="cat.normal">Normal Signboard</h2><span data-i18n="cat.normal.s">Lightbox / flat panel / inkjet</span></div>
+      <div class="cat-grid">
+        <a class="gal"><img src="images/work/normal-1.jpg" alt="" onerror="this.closest('.gal').classList.add('noimg')"><span class="gal-add">images/work/normal-1.jpg</span></a>
+        <a class="gal"><img src="images/work/normal-2.jpg" alt="" onerror="this.closest('.gal').classList.add('noimg')"><span class="gal-add">images/work/normal-2.jpg</span></a>
+        <a class="gal"><img src="images/work/normal-3.jpg" alt="" onerror="this.closest('.gal').classList.add('noimg')"><span class="gal-add">images/work/normal-3.jpg</span></a>
+        <a class="gal"><img src="images/work/normal-4.jpg" alt="" onerror="this.closest('.gal').classList.add('noimg')"><span class="gal-add">images/work/normal-4.jpg</span></a>
+        <a class="gal"><img src="images/work/normal-5.jpg" alt="" onerror="this.closest('.gal').classList.add('noimg')"><span class="gal-add">images/work/normal-5.jpg</span></a>
+        <a class="gal"><img src="images/work/normal-6.jpg" alt="" onerror="this.closest('.gal').classList.add('noimg')"><span class="gal-add">images/work/normal-6.jpg</span></a>
+      </div>
+    </section>
+
+    <!-- Neon Sign -->
+    <section class="cat" id="neon">
+      <div class="cat-head"><h2 data-i18n="cat.neon">Neon Sign</h2><span data-i18n="cat.neon.s">LED neon flex</span></div>
+      <div class="cat-grid">
+        <a class="gal"><img src="images/work/neon-1.jpg" alt="" onerror="this.closest('.gal').classList.add('noimg')"><span class="gal-add">images/work/neon-1.jpg</span></a>
+        <a class="gal"><img src="images/work/neon-2.jpg" alt="" onerror="this.closest('.gal').classList.add('noimg')"><span class="gal-add">images/work/neon-2.jpg</span></a>
+        <a class="gal"><img src="images/work/neon-3.jpg" alt="" onerror="this.closest('.gal').classList.add('noimg')"><span class="gal-add">images/work/neon-3.jpg</span></a>
+        <a class="gal"><img src="images/work/neon-4.jpg" alt="" onerror="this.closest('.gal').classList.add('noimg')"><span class="gal-add">images/work/neon-4.jpg</span></a>
+        <a class="gal"><img src="images/work/neon-5.jpg" alt="" onerror="this.closest('.gal').classList.add('noimg')"><span class="gal-add">images/work/neon-5.jpg</span></a>
+        <a class="gal"><img src="images/work/neon-6.jpg" alt="" onerror="this.closest('.gal').classList.add('noimg')"><span class="gal-add">images/work/neon-6.jpg</span></a>
+      </div>
+    </section>
+
+    <!-- Indoor Signboard -->
+    <section class="cat" id="indoor">
+      <div class="cat-head"><h2 data-i18n="cat.indoor">Indoor Signboard</h2><span data-i18n="cat.indoor.s">Reception / acrylic / directory</span></div>
+      <div class="cat-grid">
+        <a class="gal"><img src="images/work/indoor-1.jpg" alt="" onerror="this.closest('.gal').classList.add('noimg')"><span class="gal-add">images/work/indoor-1.jpg</span></a>
+        <a class="gal"><img src="images/work/indoor-2.jpg" alt="" onerror="this.closest('.gal').classList.add('noimg')"><span class="gal-add">images/work/indoor-2.jpg</span></a>
+        <a class="gal"><img src="images/work/indoor-3.jpg" alt="" onerror="this.closest('.gal').classList.add('noimg')"><span class="gal-add">images/work/indoor-3.jpg</span></a>
+        <a class="gal"><img src="images/work/indoor-4.jpg" alt="" onerror="this.closest('.gal').classList.add('noimg')"><span class="gal-add">images/work/indoor-4.jpg</span></a>
+        <a class="gal"><img src="images/work/indoor-5.jpg" alt="" onerror="this.closest('.gal').classList.add('noimg')"><span class="gal-add">images/work/indoor-5.jpg</span></a>
+        <a class="gal"><img src="images/work/indoor-6.jpg" alt="" onerror="this.closest('.gal').classList.add('noimg')"><span class="gal-add">images/work/indoor-6.jpg</span></a>
+      </div>
+    </section>
+    </main>
+  </div>
+
+  <footer>
+    <div class="wrap">
+      <a href="index.html" data-i18n="back">&larr; Back to home</a>　·　© 2026 SIGN FUTURE ADVERTISING
+    </div>
+  </footer>
+
+  <a class="wa-float" href="https://wa.me/60123456789?text=Hi%2C%20I%27d%20like%20to%20ask%20about%203D%20signboards" target="_blank" rel="noopener" aria-label="WhatsApp">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.1-1.3A10 10 0 1 0 12 2Zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 20Zm4.5-5.8c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.6.1l-.7.9c-.1.1-.3.2-.5.1a6.5 6.5 0 0 1-3.2-2.8c-.1-.2 0-.4.1-.5l.4-.5c.1-.1.1-.3 0-.4l-.7-1.7c-.2-.5-.4-.4-.6-.4h-.5c-.1 0-.4.1-.6.3a3 3 0 0 0-.9 2.2 5.3 5.3 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.6 4c1.1.5 1.6.5 2.1.4.4 0 1.3-.5 1.5-1.1.2-.5.2-1 .1-1.1Z"/></svg>
+  </a>
+
+  <script>
+    const I18N = {
+      en: {
+        '_title': 'Our Work — SIGN FUTURE ADVERTISING',
+        'nav.home': 'Home', 'nav.products': 'Products', 'nav.process': 'Process', 'nav.about': 'About Us', 'nav.work': 'Project Gallery', 'nav.services': 'Services', 'nav.contact': 'Contact Us', 'nav.quote': 'Get Quote',
+        'pg.eyebrow': 'SIGN FUTURE ADVERTISING · PORTFOLIO', 'pg.title': 'Project Gallery',
+        'pg.sub': 'Selected signboard projects across Malaysia, organised by type. New projects are added here.',
+        'cat.heading': 'Category', 'cat.searchph': 'Search categories…',
+        'cat.led': '3D LED Signboard', 'cat.led.s': 'Front-lit / back-lit channel letters',
+        'cat.3d': '3D Signboard', 'cat.3d.s': 'Built-up 3D lettering',
+        'cat.steel': '3D Stainless Steel Signboard', 'cat.steel.s': 'Brushed / mirror stainless letters',
+        'cat.normal': 'Normal Signboard', 'cat.normal.s': 'Lightbox / flat panel / inkjet',
+        'cat.neon': 'Neon Sign', 'cat.neon.s': 'LED neon flex',
+        'cat.indoor': 'Indoor Signboard', 'cat.indoor.s': 'Reception / acrylic / directory',
+        'back': '← Back to home'
+      },
+      zh: {
+        '_title': '我们的作品 — SIGN FUTURE ADVERTISING',
+        'nav.home': '首页', 'nav.products': '产品', 'nav.process': '流程', 'nav.about': '关于我们', 'nav.work': '作品集', 'nav.services': '服务', 'nav.contact': '联系我们', 'nav.quote': '获取报价',
+        'pg.eyebrow': 'SIGN FUTURE ADVERTISING · 作品集', 'pg.title': '作品集',
+        'pg.sub': '马来西亚各地的招牌项目，按类型分类。以后的新作品都会放进来。',
+        'cat.heading': '产品分类', 'cat.searchph': '搜索分类…',
+        'cat.led': '3D LED 发光字招牌', 'cat.led.s': '正发光 / 背发光立体字',
+        'cat.3d': '3D 立体招牌', 'cat.3d.s': '立体堆叠字',
+        'cat.steel': '3D 不锈钢招牌', 'cat.steel.s': '拉丝 / 镜面不锈钢字',
+        'cat.normal': '普通招牌', 'cat.normal.s': '灯箱 / 平面板 / 喷画',
+        'cat.neon': '霓虹灯招牌', 'cat.neon.s': 'LED 柔性霓虹',
+        'cat.indoor': '室内招牌', 'cat.indoor.s': '前台 / 亚克力 / 指示牌',
+        'back': '← 返回首页'
+      }
+    };
+    function setLang(l) {
+      if (!I18N[l]) l = 'en';
+      document.documentElement.lang = (l === 'zh' ? 'zh-Hans' : 'en');
+      document.querySelectorAll('[data-i18n]').forEach((el) => { const v = I18N[l][el.getAttribute('data-i18n')]; if (v != null) el.innerHTML = v; });
+      document.querySelectorAll('[data-i18n-ph]').forEach((el) => { const v = I18N[l][el.getAttribute('data-i18n-ph')]; if (v != null) el.placeholder = v; });
+      if (I18N[l]._title) document.title = I18N[l]._title;
+      document.querySelectorAll('#lang button').forEach((b) => b.classList.toggle('on', b.dataset.lang === l));
+      try { localStorage.setItem('sf_lang', l); } catch (e) {}
+    }
+    (function () {
+      let saved = null; try { saved = localStorage.getItem('sf_lang'); } catch (e) {}
+      setLang(saved || 'en');
+      document.querySelectorAll('#lang button').forEach((b) => b.addEventListener('click', () => setLang(b.dataset.lang)));
+    })();
+
+    /* Category sidebar: search filter + active state */
+    const cs = document.getElementById('catSearch');
+    if (cs) cs.addEventListener('input', () => {
+      const q = cs.value.trim().toLowerCase();
+      document.querySelectorAll('.cat-nav a').forEach((a) => a.classList.toggle('hide', !!q && !a.textContent.toLowerCase().includes(q)));
+      document.querySelectorAll('.work-main .cat').forEach((sec) => { const t = (sec.querySelector('h2')?.textContent || '').toLowerCase(); sec.style.display = (q && !t.includes(q)) ? 'none' : ''; });
+    });
+    document.querySelectorAll('.cat-nav a').forEach((a) => a.addEventListener('click', () => {
+      document.querySelectorAll('.cat-nav a').forEach((x) => x.classList.remove('active'));
+      a.classList.add('active');
+    }));
+  </script>
+</body>
+</html>
