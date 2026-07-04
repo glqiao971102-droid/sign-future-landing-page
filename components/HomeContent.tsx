@@ -282,9 +282,9 @@ export default function HomeContent() {
               {t("foot.contact")}
             </span>
             <a href={WA} target="_blank" rel="noopener">
-              <Trans id="foot.wa" as="span" />: +60 12-345 6789
+              <Trans id="foot.wa" as="span" />: +60 11-5675 8370
             </a>
-            <a href="mailto:enquiry@signfuture.my">enquiry@signfuture.my</a>
+            <a href="mailto:info@signfuture.com.my">info@signfuture.com.my</a>
             <Trans id="foot.hours" as="span" />
             <Trans id="foot.area" as="span" />
           </div>

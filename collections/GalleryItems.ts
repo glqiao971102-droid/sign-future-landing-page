@@ -13,16 +13,9 @@ export const GalleryItems: CollectionConfig = {
     { name: "title", type: "text" },
     {
       name: "category",
-      type: "select",
+      type: "relationship",
+      relationTo: "categories",
       required: true,
-      options: [
-        { label: "3D LED Signboard", value: "led" },
-        { label: "3D Signboard", value: "threeD" },
-        { label: "3D Stainless Steel Signboard", value: "steel" },
-        { label: "Normal Signboard", value: "normal" },
-        { label: "Neon Sign", value: "neon" },
-        { label: "Indoor Signboard", value: "indoor" },
-      ],
     },
     {
       name: "image",

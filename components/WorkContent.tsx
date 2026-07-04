@@ -9,14 +9,14 @@ import { useLang } from "./LanguageProvider";
 
 export type GalleryImage = { url: string; alt: string };
 
-const CATEGORIES = [
-  { id: "led", key: "cat.led", sub: "cat.led.s" },
-  { id: "threeD", key: "cat.3d", sub: "cat.3d.s" },
-  { id: "steel", key: "cat.steel", sub: "cat.steel.s" },
-  { id: "normal", key: "cat.normal", sub: "cat.normal.s" },
-  { id: "neon", key: "cat.neon", sub: "cat.neon.s" },
-  { id: "indoor", key: "cat.indoor", sub: "cat.indoor.s" },
-];
+export type WorkCategory = {
+  slug: string;
+  labelEn: string;
+  labelZh: string;
+  subEn: string;
+  subZh: string;
+  images: GalleryImage[];
+};
 
 function Gal({ image }: { image: GalleryImage }) {
   const [broken, setBroken] = useState(false);
@@ -32,15 +32,18 @@ function Gal({ image }: { image: GalleryImage }) {
 }
 
 export default function WorkContent({
-  itemsByCategory = {},
+  categories = [],
 }: {
-  itemsByCategory?: Record<string, GalleryImage[]>;
+  categories?: WorkCategory[];
 }) {
-  const { t } = useLang();
+  const { lang, t } = useLang();
   const [query, setQuery] = useState("");
   const [active, setActive] = useState<string | null>(null);
 
   const q = query.trim().toLowerCase();
+  const labelOf = (c: WorkCategory) =>
+    (lang === "zh" ? c.labelZh : c.labelEn) || c.labelEn;
+  const subOf = (c: WorkCategory) => (lang === "zh" ? c.subZh : c.subEn) || "";
 
   return (
     <>
@@ -64,21 +67,21 @@ export default function WorkContent({
             onChange={(e) => setQuery(e.target.value)}
           />
           <nav className="cat-nav">
-            {CATEGORIES.map((c) => {
-              const label = t(c.key).toLowerCase();
-              const hidden = !!q && !label.includes(q);
+            {categories.map((c) => {
+              const label = labelOf(c);
+              const hidden = !!q && !label.toLowerCase().includes(q);
               return (
                 <a
-                  key={c.id}
-                  href={`#${c.id}`}
+                  key={c.slug}
+                  href={`#${c.slug}`}
                   className={
-                    [hidden ? "hide" : "", active === c.id ? "active" : ""]
+                    [hidden ? "hide" : "", active === c.slug ? "active" : ""]
                       .filter(Boolean)
                       .join(" ") || undefined
                   }
-                  onClick={() => setActive(c.id)}
+                  onClick={() => setActive(c.slug)}
                 >
-                  {t(c.key)}
+                  {label}
                 </a>
               );
             })}
@@ -86,24 +89,23 @@ export default function WorkContent({
         </aside>
 
         <main className="work-main">
-          {CATEGORIES.map((c) => {
-            const title = t(c.key).toLowerCase();
-            const hideSection = !!q && !title.includes(q);
-            const images = itemsByCategory[c.id] ?? [];
+          {categories.map((c) => {
+            const label = labelOf(c);
+            const hideSection = !!q && !label.toLowerCase().includes(q);
             return (
               <section
                 className="cat"
-                id={c.id}
-                key={c.id}
+                id={c.slug}
+                key={c.slug}
                 style={hideSection ? { display: "none" } : undefined}
               >
                 <div className="cat-head">
-                  <Trans id={c.key} as="h2" />
-                  <Trans id={c.sub} as="span" />
+                  <h2>{label}</h2>
+                  {subOf(c) && <span>{subOf(c)}</span>}
                 </div>
-                {images.length > 0 ? (
+                {c.images.length > 0 ? (
                   <div className="cat-grid">
-                    {images.map((img, i) => (
+                    {c.images.map((img, i) => (
                       <Gal key={img.url + i} image={img} />
                     ))}
                   </div>

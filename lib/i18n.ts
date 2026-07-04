@@ -1,6 +1,6 @@
 export type Lang = "en" | "zh";
 
-export const WHATSAPP_NUMBER = "60123456789";
+export const WHATSAPP_NUMBER = "601156758370";
 export const WHATSAPP_TEXT =
   "Hi%2C%20I%27d%20like%20to%20ask%20about%203D%20signboards";
 
@@ -146,7 +146,7 @@ export const translations: Record<Lang, Dict> = {
       "Premium 3D LED illuminated signage — factory direct, design to fabrication, delivery across West Malaysia. Make your brand impossible to miss.",
     "foot.contact": "Contact Us",
     "foot.wa": "WhatsApp / Call",
-    "foot.hours": "Hours: Mon–Sat · 9:00 – 18:00",
+    "foot.hours": "Mon–Fri 9:00am–6:00pm (Lunch 1–2pm) · Sat/Sun/PH closed",
     "foot.area": "West Malaysia delivery · Nationwide orders",
     "foot.rights": "All rights reserved.",
 
@@ -182,8 +182,10 @@ export const translations: Record<Lang, Dict> = {
     "ct.email": "Email",
     "ct.addr": "Address",
     "ct.hours": "Business Hours",
-    "ct.addrval": "No. 00, Jalan Contoh 1, 47100 Puchong, Selangor, Malaysia",
-    "ct.hoursval": "Monday – Saturday · 9:00am – 6:00pm",
+    "ct.addrval":
+      "No. 9, Jalan Industri USJ 1/7, Taman Perindustrian USJ 1, 47600 Subang Jaya, Selangor, Malaysia",
+    "ct.hoursval":
+      "Mon – Fri · 9:00am – 6:00pm (Lunch 1:00 – 2:00pm) · Sat, Sun & Public Holidays closed",
     "ct.wabtn": "WhatsApp Us",
     "ct.callbtn": "Call Now",
     "ct.formtitle": "Send Us a Message",
@@ -327,7 +329,7 @@ export const translations: Record<Lang, Dict> = {
       "高质感 3D 发光字招牌定制 — 工厂直供，设计到制作，可西马配送。让你的品牌一眼被看见。",
     "foot.contact": "联系我们",
     "foot.wa": "WhatsApp / 电话",
-    "foot.hours": "营业时间：周一至周六 · 9:00 – 18:00",
+    "foot.hours": "营业时间：周一至周五 9:00–18:00（午休 13:00–14:00）· 周末及公假休息",
     "foot.area": "西马配送 · 全马接单",
     "foot.rights": "版权所有。",
 
@@ -361,8 +363,10 @@ export const translations: Record<Lang, Dict> = {
     "ct.email": "邮箱",
     "ct.addr": "地址",
     "ct.hours": "营业时间",
-    "ct.addrval": "No. 00, Jalan Contoh 1, 47100 Puchong, Selangor, 马来西亚",
-    "ct.hoursval": "周一至周六 · 9:00 – 18:00",
+    "ct.addrval":
+      "No. 9, Jalan Industri USJ 1/7, Taman Perindustrian USJ 1, 47600 Subang Jaya, Selangor, 马来西亚",
+    "ct.hoursval":
+      "周一至周五 · 9:00am – 6:00pm（午休 1:00 – 2:00pm）· 周六、周日及公共假期休息",
     "ct.wabtn": "WhatsApp 联系",
     "ct.callbtn": "拨打电话",
     "ct.formtitle": "给我们留言",

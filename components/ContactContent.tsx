@@ -51,7 +51,7 @@ export default function ContactContent() {
               <div>
                 <Trans id="ct.call" as="b" />
                 <a href={WA} target="_blank" rel="noopener">
-                  +60 12-345 6789
+                  +60 11-5675 8370
                 </a>
               </div>
             </li>
@@ -64,7 +64,7 @@ export default function ContactContent() {
               </span>
               <div>
                 <Trans id="ct.email" as="b" />
-                <a href="mailto:enquiry@signfuture.my">enquiry@signfuture.my</a>
+                <a href="mailto:info@signfuture.com.my">info@signfuture.com.my</a>
               </div>
             </li>
             <li>
@@ -99,7 +99,7 @@ export default function ContactContent() {
               </svg>
               <Trans id="ct.wabtn" as="span" />
             </a>
-            <a className="btn outline" href="tel:+60123456789">
+            <a className="btn outline" href="tel:+601156758370">
               <Trans id="ct.callbtn" as="span" />
             </a>
           </div>
@@ -155,7 +155,7 @@ export default function ContactContent() {
         </div>
         <div className="map-wrap">
           <iframe
-            src="https://www.google.com/maps?q=Puchong%20Selangor%20Malaysia&output=embed"
+            src="https://www.google.com/maps?q=No%209%2C%20Jalan%20Industri%20USJ%201%2F7%2C%20Taman%20Perindustrian%20USJ%201%2C%2047600%20Subang%20Jaya%2C%20Selangor&output=embed"
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
             title="Map"
