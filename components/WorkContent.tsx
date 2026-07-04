@@ -7,29 +7,35 @@ import Trans from "./Trans";
 import PageTitle from "./PageTitle";
 import { useLang } from "./LanguageProvider";
 
+export type GalleryImage = { url: string; alt: string };
+
 const CATEGORIES = [
-  { id: "led", key: "cat.led", sub: "cat.led.s", prefix: "led" },
-  { id: "threeD", key: "cat.3d", sub: "cat.3d.s", prefix: "3d" },
-  { id: "steel", key: "cat.steel", sub: "cat.steel.s", prefix: "steel" },
-  { id: "normal", key: "cat.normal", sub: "cat.normal.s", prefix: "normal" },
-  { id: "neon", key: "cat.neon", sub: "cat.neon.s", prefix: "neon" },
-  { id: "indoor", key: "cat.indoor", sub: "cat.indoor.s", prefix: "indoor" },
+  { id: "led", key: "cat.led", sub: "cat.led.s" },
+  { id: "threeD", key: "cat.3d", sub: "cat.3d.s" },
+  { id: "steel", key: "cat.steel", sub: "cat.steel.s" },
+  { id: "normal", key: "cat.normal", sub: "cat.normal.s" },
+  { id: "neon", key: "cat.neon", sub: "cat.neon.s" },
+  { id: "indoor", key: "cat.indoor", sub: "cat.indoor.s" },
 ];
 
-function Gal({ file }: { file: string }) {
+function Gal({ image }: { image: GalleryImage }) {
   const [broken, setBroken] = useState(false);
   return (
     <a className={`gal${broken ? " noimg" : ""}`}>
       {!broken && (
         // eslint-disable-next-line @next/next/no-img-element
-        <img src={`/${file}`} alt="" onError={() => setBroken(true)} />
+        <img src={image.url} alt={image.alt} onError={() => setBroken(true)} />
       )}
-      <span className="gal-add">{file}</span>
+      <span className="gal-add">{image.alt || "image"}</span>
     </a>
   );
 }
 
-export default function WorkContent() {
+export default function WorkContent({
+  itemsByCategory = {},
+}: {
+  itemsByCategory?: Record<string, GalleryImage[]>;
+}) {
   const { t } = useLang();
   const [query, setQuery] = useState("");
   const [active, setActive] = useState<string | null>(null);
@@ -83,6 +89,7 @@ export default function WorkContent() {
           {CATEGORIES.map((c) => {
             const title = t(c.key).toLowerCase();
             const hideSection = !!q && !title.includes(q);
+            const images = itemsByCategory[c.id] ?? [];
             return (
               <section
                 className="cat"
@@ -94,14 +101,15 @@ export default function WorkContent() {
                   <Trans id={c.key} as="h2" />
                   <Trans id={c.sub} as="span" />
                 </div>
-                <div className="cat-grid">
-                  {[1, 2, 3, 4, 5, 6].map((n) => (
-                    <Gal
-                      key={n}
-                      file={`images/work/${c.prefix}-${n}.jpg`}
-                    />
-                  ))}
-                </div>
+                {images.length > 0 ? (
+                  <div className="cat-grid">
+                    {images.map((img, i) => (
+                      <Gal key={img.url + i} image={img} />
+                    ))}
+                  </div>
+                ) : (
+                  <p className="cat-empty">{t("cat.empty")}</p>
+                )}
               </section>
             );
           })}

@@ -169,6 +169,7 @@ export const translations: Record<Lang, Dict> = {
     "cat.neon.s": "LED neon flex",
     "cat.indoor": "Indoor Signboard",
     "cat.indoor.s": "Reception / acrylic / directory",
+    "cat.empty": "New projects coming soon.",
     back: "← Back to home",
 
     // contact page
@@ -348,6 +349,7 @@ export const translations: Record<Lang, Dict> = {
     "cat.neon.s": "LED 柔性霓虹",
     "cat.indoor": "室内招牌",
     "cat.indoor.s": "前台 / 亚克力 / 指示牌",
+    "cat.empty": "新作品即将上线。",
     back: "← 返回首页",
 
     // contact page

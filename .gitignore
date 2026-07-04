@@ -18,7 +18,12 @@ yarn-debug.log*
 yarn-error.log*
 
 # env
+.env
 .env*.local
+
+# payload
+/media
+/.payload
 
 # typescript
 *.tsbuildinfo
