@@ -42,6 +42,18 @@ export default buildConfig({
       collections: {
         [Media.slug]: {
           prefix: "sign-future",
+          // Serve images straight from S3 (browser → S3) instead of proxying
+          // every request through this app's /api/media/file route. The proxy
+          // added an extra hop (browser → server → S3 → server → browser, ~1s
+          // cold) and sent no cache headers, so images reloaded on every visit.
+          disablePayloadAccessControl: true,
+          generateFileURL: ({ filename, prefix }) => {
+            const bucket = process.env.S3_BUCKET || "";
+            const region = process.env.S3_REGION || "";
+            const key = [prefix, filename].filter(Boolean).join("/");
+            const encodedKey = key.split("/").map(encodeURIComponent).join("/");
+            return `https://${bucket}.s3.${region}.amazonaws.com/${encodedKey}`;
+          },
         },
       },
       bucket: process.env.S3_BUCKET || "",

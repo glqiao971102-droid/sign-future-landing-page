@@ -24,7 +24,13 @@ function Gal({ image }: { image: GalleryImage }) {
     <a className={`gal${broken ? " noimg" : ""}`}>
       {!broken && (
         // eslint-disable-next-line @next/next/no-img-element
-        <img src={image.url} alt={image.alt} onError={() => setBroken(true)} />
+        <img
+          src={image.url}
+          alt={image.alt}
+          loading="lazy"
+          decoding="async"
+          onError={() => setBroken(true)}
+        />
       )}
       <span className="gal-add">{image.alt || "image"}</span>
     </a>
