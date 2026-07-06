@@ -39,7 +39,7 @@ export const translations: Record<Lang, Dict> = {
     "about.s4l": "States covered",
 
     // what we do
-    "do.title": 'What We Do — <span class="gold">3D LED Signage Testing</span>',
+    "do.title": 'What We Do — <span class="gold">3D LED Signage</span>',
     "do.intro":
       "We design, fabricate and install 3D LED illuminated signboards. Watch a plain shopfront come to life as the sign goes up and lights the night.",
     "vid.ph":
