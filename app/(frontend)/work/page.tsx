@@ -9,8 +9,11 @@ export const metadata: Metadata = {
     "Our signboard portfolio — 3D LED signboards, 3D signage, stainless steel, normal signboards, neon signs and indoor signage by SIGN FUTURE ADVERTISING, Malaysia.",
 };
 
-// Gallery + categories are dynamic (come from Payload), so render at request time.
-export const dynamic = "force-dynamic";
+// Gallery + categories come from Payload. Cache the rendered page so navigating
+// to /work is instant, and refresh at most every 5 minutes as a fallback. The
+// Categories / GalleryItems collections also call revalidatePath("/work") on
+// every edit, so admin changes still appear immediately.
+export const revalidate = 300;
 
 async function loadCategories(): Promise<WorkCategory[]> {
   try {

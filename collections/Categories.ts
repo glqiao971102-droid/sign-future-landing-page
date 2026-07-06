@@ -1,5 +1,10 @@
 import type { CollectionConfig } from "payload";
 
+import {
+  revalidateWorkAfterChange,
+  revalidateWorkAfterDelete,
+} from "./revalidateWork";
+
 const slugify = (s: string) =>
   s
     .toLowerCase()
@@ -26,6 +31,8 @@ export const Categories: CollectionConfig = {
         return data;
       },
     ],
+    afterChange: [revalidateWorkAfterChange],
+    afterDelete: [revalidateWorkAfterDelete],
   },
   fields: [
     { name: "labelEn", type: "text", required: true, label: "Label (English)" },

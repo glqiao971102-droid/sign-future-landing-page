@@ -1,5 +1,10 @@
 import type { CollectionConfig } from "payload";
 
+import {
+  revalidateWorkAfterChange,
+  revalidateWorkAfterDelete,
+} from "./revalidateWork";
+
 // The work / portfolio gallery. Category values match the section ids on /work.
 export const GalleryItems: CollectionConfig = {
   slug: "gallery-items",
@@ -9,6 +14,10 @@ export const GalleryItems: CollectionConfig = {
     defaultColumns: ["title", "category", "order"],
   },
   access: { read: () => true },
+  hooks: {
+    afterChange: [revalidateWorkAfterChange],
+    afterDelete: [revalidateWorkAfterDelete],
+  },
   fields: [
     { name: "title", type: "text" },
     {
