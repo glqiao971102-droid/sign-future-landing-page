@@ -7,14 +7,31 @@ import PageTitle from "./PageTitle";
 import { useLang } from "./LanguageProvider";
 import type { WorkCategory } from "@/lib/gallery";
 
+const META_LABELS = {
+  en: {
+    location: "Location",
+    businessType: "Business Type",
+    baseMaterial: "Base Material",
+    price: "Price",
+  },
+  zh: {
+    location: "地点",
+    businessType: "行业类型",
+    baseMaterial: "材质",
+    price: "价格",
+  },
+} as const;
+
 function Lightbox({
   images,
   index,
+  lang,
   onClose,
   onNav,
 }: {
   images: WorkCategory["images"];
   index: number;
+  lang: "en" | "zh";
   onClose: () => void;
   onNav: (next: number) => void;
 }) {
@@ -57,14 +74,44 @@ function Lightbox({
         </button>
       )}
 
-      {/* Stop clicks on the image itself from closing the box. */}
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        className="lb-img"
-        src={img.url}
-        alt={img.alt}
-        onClick={(e) => e.stopPropagation()}
-      />
+      {/* Stop clicks inside the figure from closing the box. */}
+      <figure className="lb-figure" onClick={(e) => e.stopPropagation()}>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img className="lb-img" src={img.url} alt={img.alt} />
+        {(img.title ||
+          img.caption ||
+          img.location ||
+          img.businessType ||
+          img.baseMaterial ||
+          img.price) && (
+          <figcaption className="lb-info">
+            {img.title && <h3>{img.title}</h3>}
+            {img.caption && <p>{img.caption}</p>}
+            <div className="lb-meta">
+              {img.location && (
+                <span>
+                  <b>{META_LABELS[lang].location}:</b> {img.location}
+                </span>
+              )}
+              {img.businessType && (
+                <span>
+                  <b>{META_LABELS[lang].businessType}:</b> {img.businessType}
+                </span>
+              )}
+              {img.baseMaterial && (
+                <span>
+                  <b>{META_LABELS[lang].baseMaterial}:</b> {img.baseMaterial}
+                </span>
+              )}
+              {img.price && (
+                <span>
+                  <b>{META_LABELS[lang].price}:</b> {img.price}
+                </span>
+              )}
+            </div>
+          </figcaption>
+        )}
+      </figure>
 
       {total > 1 && (
         <button
@@ -103,6 +150,8 @@ export default function CategoryContent({
   const close = useCallback(() => setOpen(null), []);
   const nav = useCallback((next: number) => setOpen(next), []);
 
+  const L = META_LABELS[lang === "zh" ? "zh" : "en"];
+
   return (
     <>
       <PageTitle id="title.work" />
@@ -118,22 +167,58 @@ export default function CategoryContent({
 
       <div className="wrap" style={{ marginTop: 30 }}>
         {images.length > 0 ? (
-          <div className="cat-grid">
-            {images.map((img, i) => (
-              <button
-                type="button"
-                className="gal gal-btn"
-                key={img.url + i}
-                onClick={() => setOpen(i)}
-                aria-label={img.alt || `Image ${i + 1}`}
-              >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={img.url} alt={img.alt} loading="lazy" decoding="async" />
-                <span className="gal-zoom" aria-hidden>
-                  ⤢
-                </span>
-              </button>
-            ))}
+          <div className="item-grid">
+            {images.map((img, i) => {
+              const meta = [
+                [L.location, img.location],
+                [L.businessType, img.businessType],
+                [L.baseMaterial, img.baseMaterial],
+                [L.price, img.price],
+              ].filter(([, v]) => v);
+              return (
+                <article className="item-card" key={img.url + i}>
+                  <button
+                    type="button"
+                    className="gal gal-btn item-media"
+                    onClick={() => setOpen(i)}
+                    aria-label={img.alt || img.title || `Image ${i + 1}`}
+                  >
+                    {/* First row loads eagerly so it's there on arrival; the
+                        rest lazy-load as you scroll. */}
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={img.url}
+                      alt={img.alt}
+                      loading={i < 3 ? "eager" : "lazy"}
+                      fetchPriority={i < 3 ? "high" : "auto"}
+                      decoding="async"
+                    />
+                    <span className="gal-zoom" aria-hidden>
+                      ⤢
+                    </span>
+                  </button>
+
+                  {(img.title || img.caption || meta.length > 0) && (
+                    <div className="item-body">
+                      {img.title && <h3 className="item-title">{img.title}</h3>}
+                      {img.caption && (
+                        <p className="item-caption">{img.caption}</p>
+                      )}
+                      {meta.length > 0 && (
+                        <dl className="item-meta">
+                          {meta.map(([label, value]) => (
+                            <div key={label}>
+                              <dt>{label}</dt>
+                              <dd>{value}</dd>
+                            </div>
+                          ))}
+                        </dl>
+                      )}
+                    </div>
+                  )}
+                </article>
+              );
+            })}
           </div>
         ) : (
           <p className="cat-empty">{t("cat.empty")}</p>
@@ -147,7 +232,13 @@ export default function CategoryContent({
       </footer>
 
       {open !== null && images[open] && (
-        <Lightbox images={images} index={open} onClose={close} onNav={nav} />
+        <Lightbox
+          images={images}
+          index={open}
+          lang={lang === "zh" ? "zh" : "en"}
+          onClose={close}
+          onNav={nav}
+        />
       )}
     </>
   );

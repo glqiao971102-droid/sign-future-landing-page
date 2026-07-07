@@ -1,7 +1,30 @@
 import { getPayload } from "payload";
 import config from "@payload-config";
 
-export type GalleryImage = { url: string; alt: string };
+export type GalleryImage = {
+  url: string;
+  alt: string;
+  title?: string;
+  caption?: string;
+  location?: string;
+  businessType?: string;
+  baseMaterial?: string;
+  price?: string;
+};
+
+type RawGalleryItem = {
+  title?: string;
+  category?: unknown;
+  image?: unknown;
+  alt?: string;
+  caption?: string;
+  location?: string;
+  businessType?: string;
+  businessTypeOther?: string;
+  baseMaterial?: string;
+  price?: string;
+  priceCustom?: string;
+};
 
 export type WorkCategory = {
   slug: string;
@@ -9,6 +32,7 @@ export type WorkCategory = {
   labelZh: string;
   subEn: string;
   subZh: string;
+  cover?: string;
   images: GalleryImage[];
 };
 
@@ -19,6 +43,7 @@ type RawCategory = {
   labelZh?: string;
   subEn?: string;
   subZh?: string;
+  coverImage?: unknown;
 };
 
 // Pull every gallery image and bucket it by category id.
@@ -34,33 +59,66 @@ async function loadImagesByCategory(): Promise<
   });
 
   const byCat: Record<string, GalleryImage[]> = {};
-  for (const item of items.docs) {
-    const cat = item.category as unknown;
-    const catId =
-      cat && typeof cat === "object"
-        ? (cat as { id: string | number }).id
-        : cat;
-    const image = item.image;
-    const url = image && typeof image === "object" ? (image.url ?? null) : null;
-    if (catId == null || !url) continue;
-    (byCat[String(catId)] ??= []).push({
+  for (const raw of items.docs) {
+    const item = raw as RawGalleryItem;
+    const image = item.image as
+      | { url?: string | null; alt?: string | null }
+      | string
+      | null
+      | undefined;
+    const url =
+      image && typeof image === "object" ? (image.url ?? null) : null;
+    const mediaAlt =
+      image && typeof image === "object" ? (image.alt ?? "") : "";
+    if (!url) continue;
+
+    // "Other" / "Custom" selects store the real text in a companion field.
+    const businessType =
+      item.businessType === "other" ? item.businessTypeOther : item.businessType;
+    const price = item.price === "custom" ? item.priceCustom : item.price;
+
+    const galleryImage: GalleryImage = {
       url,
-      alt:
-        (image && typeof image === "object" && image.alt) ||
-        (item.title as string) ||
-        "",
-    });
+      alt: item.alt || mediaAlt || item.title || "",
+      title: item.title,
+      caption: item.caption,
+      location: item.location,
+      businessType,
+      baseMaterial: item.baseMaterial,
+      price,
+    };
+
+    // category is now hasMany → the image belongs to every category selected.
+    const cats = Array.isArray(item.category)
+      ? item.category
+      : item.category != null
+        ? [item.category]
+        : [];
+    for (const cat of cats) {
+      const catId =
+        cat && typeof cat === "object"
+          ? (cat as { id: string | number }).id
+          : cat;
+      if (catId == null) continue;
+      (byCat[String(catId)] ??= []).push(galleryImage);
+    }
   }
   return byCat;
 }
 
 function toWorkCategory(c: RawCategory, images: GalleryImage[]): WorkCategory {
+  const coverImage = c.coverImage as { url?: string | null } | null | undefined;
+  const cover =
+    coverImage && typeof coverImage === "object"
+      ? (coverImage.url ?? undefined)
+      : undefined;
   return {
     slug: c.slug || String(c.id),
     labelEn: c.labelEn || "",
     labelZh: c.labelZh || c.labelEn || "",
     subEn: c.subEn || "",
     subZh: c.subZh || c.subEn || "",
+    cover: cover || images[0]?.url,
     images,
   };
 }
@@ -70,7 +128,12 @@ export async function loadCategories(): Promise<WorkCategory[]> {
   try {
     const payload = await getPayload({ config });
     const [cats, byCat] = await Promise.all([
-      payload.find({ collection: "categories", sort: "order", limit: 200 }),
+      payload.find({
+        collection: "categories",
+        sort: "order",
+        limit: 200,
+        depth: 1,
+      }),
       loadImagesByCategory(),
     ]);
     return cats.docs.map((c) =>

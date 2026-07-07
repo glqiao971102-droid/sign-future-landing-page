@@ -311,6 +311,21 @@ section.block { position: relative; padding: 90px 0; border-top: 1px solid rgba(
 .cat-card-body h2 { font-size: 18px; font-weight: 800; color: var(--gold-lite); }
 .cat-card-body p { margin-top: 4px; color: var(--muted); font-size: 13px; }
 
+/* ---- Category detail: image card with details shown underneath ---- */
+.item-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+@media (max-width: 900px) { .item-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 560px) { .item-grid { grid-template-columns: 1fr; } }
+.item-card { border: 1px solid var(--line); border-radius: 14px; overflow: hidden; background: linear-gradient(160deg, rgba(255,255,255,.04), rgba(255,255,255,.01)); display: flex; flex-direction: column; transition: border-color .3s, transform .3s; }
+.item-card:hover { border-color: var(--line-2); transform: translateY(-3px); }
+.item-media { position: relative; aspect-ratio: 4 / 3; border: none; border-bottom: 1px solid var(--line); border-radius: 0; }
+.item-body { padding: 16px 18px 18px; }
+.item-title { font-size: 17px; font-weight: 800; color: var(--gold-lite); }
+.item-caption { margin-top: 6px; color: var(--text); font-size: 13.5px; line-height: 1.6; }
+.item-meta { margin-top: 12px; display: flex; flex-direction: column; gap: 6px; }
+.item-meta > div { display: flex; gap: 8px; font-size: 13px; }
+.item-meta dt { color: var(--muted); font-weight: 600; flex: 0 0 auto; }
+.item-meta dd { color: var(--text); margin: 0; }
+
 /* ---- Clickable gallery tile (opens the lightbox) ---- */
 .gal-btn { border: 1px solid var(--line); cursor: pointer; padding: 0; font: inherit; }
 .gal-zoom { position: absolute; top: 10px; right: 10px; z-index: 2; width: 30px; height: 30px; display: grid; place-items: center; border-radius: 8px; background: rgba(0,0,0,.5); color: var(--gold-lite); font-size: 15px; opacity: 0; transition: opacity .25s; backdrop-filter: blur(4px); }
@@ -319,7 +334,14 @@ section.block { position: relative; padding: 90px 0; border-top: 1px solid rgba(
 /* ---- Lightbox (enlarged image popup) ---- */
 .lightbox { position: fixed; inset: 0; z-index: 200; display: grid; place-items: center; padding: 40px; background: rgba(6,5,4,.9); backdrop-filter: blur(6px); animation: lb-fade .2s ease; }
 @keyframes lb-fade { from { opacity: 0; } to { opacity: 1; } }
-.lb-img { max-width: min(92vw, 1200px); max-height: 86vh; width: auto; height: auto; border-radius: 10px; box-shadow: 0 20px 80px rgba(0,0,0,.6); cursor: default; }
+.lb-figure { display: flex; flex-direction: column; align-items: center; gap: 14px; max-width: min(92vw, 1200px); cursor: default; }
+.lb-img { max-width: 100%; max-height: 72vh; width: auto; height: auto; border-radius: 10px; box-shadow: 0 20px 80px rgba(0,0,0,.6); }
+.lb-info { text-align: center; max-width: 760px; }
+.lb-info h3 { font-size: 20px; font-weight: 800; color: var(--gold-lite); }
+.lb-info p { margin-top: 6px; color: var(--text); font-size: 14px; }
+.lb-meta { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 18px; margin-top: 12px; }
+.lb-meta span { color: var(--muted); font-size: 13px; }
+.lb-meta b { color: var(--text); font-weight: 600; }
 .lb-close { position: fixed; top: 20px; right: 26px; z-index: 201; width: 46px; height: 46px; border: none; border-radius: 50%; background: rgba(255,255,255,.08); color: var(--text); font-size: 28px; line-height: 1; cursor: pointer; transition: background .2s; }
 .lb-close:hover { background: rgba(255,255,255,.18); }
 .lb-nav { position: fixed; top: 50%; transform: translateY(-50%); z-index: 201; width: 54px; height: 54px; border: none; border-radius: 50%; background: rgba(255,255,255,.08); color: var(--text); font-size: 34px; line-height: 1; cursor: pointer; transition: background .2s; }

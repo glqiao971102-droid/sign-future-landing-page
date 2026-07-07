@@ -10,13 +10,19 @@ import type { WorkCategory } from "@/lib/gallery";
 
 export type { WorkCategory } from "@/lib/gallery";
 
-function CategoryCard({ category }: { category: WorkCategory }) {
+function CategoryCard({
+  category,
+  priority = false,
+}: {
+  category: WorkCategory;
+  priority?: boolean;
+}) {
   const { lang } = useLang();
   const [broken, setBroken] = useState(false);
 
   const label = (lang === "zh" ? category.labelZh : category.labelEn) || category.labelEn;
   const sub = (lang === "zh" ? category.subZh : category.subEn) || "";
-  const cover = category.images[0]?.url;
+  const cover = category.cover;
   const count = category.images.length;
 
   return (
@@ -27,7 +33,8 @@ function CategoryCard({ category }: { category: WorkCategory }) {
           <img
             src={cover}
             alt={label}
-            loading="lazy"
+            loading={priority ? "eager" : "lazy"}
+            fetchPriority={priority ? "high" : "auto"}
             decoding="async"
             onError={() => setBroken(true)}
           />
@@ -81,8 +88,8 @@ export default function WorkContent({
 
         {visible.length > 0 ? (
           <div className="cat-card-grid">
-            {visible.map((c) => (
-              <CategoryCard key={c.slug} category={c} />
+            {visible.map((c, i) => (
+              <CategoryCard key={c.slug} category={c} priority={i < 3} />
             ))}
           </div>
         ) : (

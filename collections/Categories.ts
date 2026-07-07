@@ -40,6 +40,16 @@ export const Categories: CollectionConfig = {
     { name: "subEn", type: "text", label: "Subtitle (English)" },
     { name: "subZh", type: "text", label: "Subtitle (中文)" },
     {
+      name: "coverImage",
+      type: "upload",
+      relationTo: "media",
+      label: "Cover Image",
+      admin: {
+        description:
+          "Image shown on this category's card on /work. If left empty, the first gallery item's image is used.",
+      },
+    },
+    {
       name: "slug",
       type: "text",
       unique: true,

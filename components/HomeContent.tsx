@@ -10,6 +10,8 @@ import ShowcaseVideo from "./ShowcaseVideo";
 import { useLang } from "./LanguageProvider";
 import { WHATSAPP_NUMBER } from "@/lib/i18n";
 
+export type HeroSlide = { url: string; alt: string };
+
 const WA = `https://wa.me/${WHATSAPP_NUMBER}`;
 
 const AUDIENCE: { src: string; id: string; icon: ReactNode }[] = [
@@ -129,7 +131,11 @@ const FEATURES = [
   },
 ];
 
-export default function HomeContent() {
+export default function HomeContent({
+  heroSlides = [],
+}: {
+  heroSlides?: HeroSlide[];
+}) {
   const { t } = useLang();
   const [ctaBroken, setCtaBroken] = useState(false);
 
@@ -139,7 +145,7 @@ export default function HomeContent() {
       <Nav active="home" />
 
       {/* Hero */}
-      <HeroSlideshow />
+      <HeroSlideshow slides={heroSlides} />
 
       {/* What We Do */}
       <section className="block" id="about-do">

@@ -71,6 +71,7 @@ export interface Config {
     media: Media;
     categories: Category;
     'gallery-items': GalleryItem;
+    'hero-slides': HeroSlide;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -82,6 +83,7 @@ export interface Config {
     media: MediaSelect<false> | MediaSelect<true>;
     categories: CategoriesSelect<false> | CategoriesSelect<true>;
     'gallery-items': GalleryItemsSelect<false> | GalleryItemsSelect<true>;
+    'hero-slides': HeroSlidesSelect<false> | HeroSlidesSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -178,6 +180,10 @@ export interface Category {
   subEn?: string | null;
   subZh?: string | null;
   /**
+   * Image shown on this category's card on /work. If left empty, the first gallery item's image is used.
+   */
+  coverImage?: (number | null) | Media;
+  /**
    * Auto-filled from the English label if left blank. Used as the #anchor on /work.
    */
   slug?: string | null;
@@ -194,11 +200,130 @@ export interface Category {
  */
 export interface GalleryItem {
   id: number;
-  title?: string | null;
-  category: number | Category;
-  image: number | Media;
+  title: string;
+  slug?: string | null;
+  /**
+   * Pick one or more — this image shows in every category you select.
+   */
+  category: (number | Category)[];
   /**
    * Lower numbers show first within a category.
+   */
+  order?: number | null;
+  image: number | Media;
+  /**
+   * Describes the image for screen readers and SEO. Falls back to the Title if blank.
+   */
+  alt?: string | null;
+  /**
+   * Short description shown under the enlarged image.
+   */
+  caption?: string | null;
+  /**
+   * Malaysian state / territory.
+   */
+  location?:
+    | (
+        | 'Johor'
+        | 'Kedah'
+        | 'Kelantan'
+        | 'Melaka'
+        | 'Negeri Sembilan'
+        | 'Pahang'
+        | 'Penang'
+        | 'Perak'
+        | 'Perlis'
+        | 'Sabah'
+        | 'Sarawak'
+        | 'Selangor'
+        | 'Terengganu'
+        | 'Kuala Lumpur'
+        | 'Labuan'
+        | 'Putrajaya'
+      )
+    | null;
+  businessType?:
+    | (
+        | 'Restaurant'
+        | 'Cafe'
+        | 'Bakery'
+        | 'Bar / Pub'
+        | 'Kopitiam / Mamak'
+        | 'Retail Shop'
+        | 'Boutique / Fashion'
+        | 'Minimart / Convenience Store'
+        | 'Supermarket / Grocery'
+        | 'Hair Salon'
+        | 'Beauty / Spa'
+        | 'Barbershop'
+        | 'Clinic / Medical'
+        | 'Dental Clinic'
+        | 'Pharmacy'
+        | 'Gym / Fitness'
+        | 'Automotive / Workshop'
+        | 'Car Wash'
+        | 'Hotel / Hostel'
+        | 'Education / Tuition Centre'
+        | 'Office / Corporate'
+        | 'Electronics Store'
+        | 'Hardware Store'
+        | 'Gaming / Esports'
+        | 'Property / Real Estate'
+        | 'Bank / Financial Services'
+        | 'other'
+      )
+    | null;
+  /**
+   * Shown only when Business Type is set to Other.
+   */
+  businessTypeOther?: string | null;
+  baseMaterial?:
+    | (
+        | 'Polycarbonate Base'
+        | 'Aluminum Ceiling Panel Base'
+        | 'Acrylic Base'
+        | 'ACP Base'
+        | 'Billboard Base'
+        | 'Custom Base'
+      )
+    | null;
+  price?:
+    | (
+        | 'RM1,000++'
+        | 'RM2,000++'
+        | 'RM3,000++'
+        | 'RM4,000++'
+        | 'RM5,000++'
+        | 'RM6,000++'
+        | 'RM7,000++'
+        | 'RM8,000++'
+        | 'RM9,000++'
+        | 'RM10,000++'
+        | 'custom'
+      )
+    | null;
+  /**
+   * Shown only when Price is set to Custom.
+   */
+  priceCustom?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * Big rotating images at the top of the home page.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "hero-slides".
+ */
+export interface HeroSlide {
+  id: number;
+  image: number | Media;
+  /**
+   * Describes the image for screen readers and SEO.
+   */
+  alt?: string | null;
+  /**
+   * Lower numbers show first.
    */
   order?: number | null;
   updatedAt: string;
@@ -243,6 +368,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'gallery-items';
         value: number | GalleryItem;
+      } | null)
+    | ({
+        relationTo: 'hero-slides';
+        value: number | HeroSlide;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -337,6 +466,7 @@ export interface CategoriesSelect<T extends boolean = true> {
   labelZh?: T;
   subEn?: T;
   subZh?: T;
+  coverImage?: T;
   slug?: T;
   order?: T;
   updatedAt?: T;
@@ -348,8 +478,28 @@ export interface CategoriesSelect<T extends boolean = true> {
  */
 export interface GalleryItemsSelect<T extends boolean = true> {
   title?: T;
+  slug?: T;
   category?: T;
+  order?: T;
   image?: T;
+  alt?: T;
+  caption?: T;
+  location?: T;
+  businessType?: T;
+  businessTypeOther?: T;
+  baseMaterial?: T;
+  price?: T;
+  priceCustom?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "hero-slides_select".
+ */
+export interface HeroSlidesSelect<T extends boolean = true> {
+  image?: T;
+  alt?: T;
   order?: T;
   updatedAt?: T;
   createdAt?: T;

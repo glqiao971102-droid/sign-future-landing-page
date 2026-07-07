@@ -2,12 +2,22 @@
 
 import { useEffect, useRef, useState } from "react";
 
-const SLIDES = [
+// Used only when no Hero Slides have been added in the admin yet.
+const FALLBACK_SLIDES = [
   { src: "/images/hero-1.jpg", alt: "THE EXCHANGE TRX illuminated signage" },
   { src: "/images/hero-2.jpg", alt: "PAVILION KUALA LUMPUR illuminated signage" },
 ];
 
-export default function HeroSlideshow() {
+export default function HeroSlideshow({
+  slides: slidesProp,
+}: {
+  slides?: { url: string; alt: string }[];
+}) {
+  const SLIDES =
+    slidesProp && slidesProp.length > 0
+      ? slidesProp.map((s) => ({ src: s.url, alt: s.alt }))
+      : FALLBACK_SLIDES;
+
   // Track which slide images actually loaded (mirrors the original onerror removal).
   const [broken, setBroken] = useState<boolean[]>(() => SLIDES.map(() => false));
   const [idx, setIdx] = useState(0);

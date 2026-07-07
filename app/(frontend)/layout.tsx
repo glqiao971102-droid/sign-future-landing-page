@@ -10,6 +10,13 @@ export const metadata: Metadata = {
     "SIGN FUTURE ADVERTISING — premium custom 3D LED illuminated signboards in Malaysia. For shopfronts, indoor logo walls, restaurants, retail, offices and showrooms. Factory direct, design to fabrication, West Malaysia delivery, fast quote.",
 };
 
+// S3 host that serves the gallery / hero images. Warming the connection early
+// makes the images load noticeably faster on the first view.
+const s3Host =
+  process.env.S3_BUCKET && process.env.S3_REGION
+    ? `https://${process.env.S3_BUCKET}.s3.${process.env.S3_REGION}.amazonaws.com`
+    : null;
+
 export default function RootLayout({
   children,
 }: {
@@ -18,6 +25,12 @@ export default function RootLayout({
   return (
     <html lang="en" data-lang="en">
       <head>
+        {s3Host && (
+          <>
+            <link rel="preconnect" href={s3Host} crossOrigin="" />
+            <link rel="dns-prefetch" href={s3Host} />
+          </>
+        )}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
           rel="preconnect"
