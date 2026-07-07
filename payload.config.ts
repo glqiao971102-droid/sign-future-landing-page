@@ -12,6 +12,7 @@ import { Media } from "./collections/Media";
 import { Categories } from "./collections/Categories";
 import { GalleryItems } from "./collections/GalleryItems";
 import { HeroSlides } from "./collections/HeroSlides";
+import { SiteSettings } from "./globals/SiteSettings";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -24,6 +25,7 @@ export default buildConfig({
     },
   },
   collections: [Users, Media, Categories, GalleryItems, HeroSlides],
+  globals: [SiteSettings],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || "",
   typescript: {

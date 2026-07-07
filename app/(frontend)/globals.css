@@ -235,6 +235,21 @@ section.block { position: relative; padding: 90px 0; border-top: 1px solid rgba(
 @media (max-width: 560px) { .wa-float { width: 52px; height: 52px; right: 16px; bottom: 16px; } .wa-float svg { width: 28px; height: 28px; } }
 @media (prefers-reduced-motion: reduce) { .wa-float::after { animation: none; } }
 
+/* ---- Stacked floating social buttons (WhatsApp + Facebook + Instagram) ---- */
+.social-float { position: fixed; right: 22px; bottom: 22px; z-index: 200; display: flex; flex-direction: column; gap: 12px; align-items: center; }
+.sfab { position: relative; width: 58px; height: 58px; border-radius: 50%; display: grid; place-items: center; color: #fff; transition: transform .2s, box-shadow .2s; }
+.sfab:hover { transform: scale(1.08); }
+.sfab svg { width: 30px; height: 30px; }
+.sfab.wa { background: #25d366; box-shadow: 0 8px 24px rgba(37,211,102,.45); }
+.sfab.wa:hover { box-shadow: 0 12px 32px rgba(37,211,102,.6); }
+.sfab.fb { background: #1877f2; box-shadow: 0 8px 24px rgba(24,119,242,.45); }
+.sfab.fb:hover { box-shadow: 0 12px 32px rgba(24,119,242,.6); }
+.sfab.ig { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285aeb 90%); box-shadow: 0 8px 24px rgba(214,36,159,.45); }
+.sfab.ig:hover { box-shadow: 0 12px 32px rgba(214,36,159,.6); }
+.sfab.wa::after { content: ""; position: absolute; inset: 0; border-radius: 50%; animation: waPulse 2.2s infinite; }
+@media (max-width: 560px) { .social-float { right: 16px; bottom: 16px; gap: 10px; } .sfab { width: 52px; height: 52px; } .sfab svg { width: 27px; height: 27px; } }
+@media (prefers-reduced-motion: reduce) { .sfab.wa::after { animation: none; } }
+
 /* ---- Home Responsive ---- */
 @media (max-width: 960px) {
   .nav-links { display: none; }

@@ -7,10 +7,15 @@ import Trans from "./Trans";
 import PageTitle from "./PageTitle";
 import { useLang } from "./LanguageProvider";
 import { WHATSAPP_NUMBER } from "@/lib/i18n";
+import type { SocialLinks } from "@/lib/site";
 
 const WA = `https://wa.me/${WHATSAPP_NUMBER}`;
 
-export default function ContactContent() {
+export default function ContactContent({
+  social = {},
+}: {
+  social?: SocialLinks;
+}) {
   const { t } = useLang();
 
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
@@ -104,15 +109,36 @@ export default function ContactContent() {
             </a>
           </div>
           <div className="social">
-            <a href="#" aria-label="Facebook">
-              f
-            </a>
-            <a href="#" aria-label="Instagram">
-              ◎
-            </a>
-            <a href="#" aria-label="TikTok">
-              ♪
-            </a>
+            {social.facebook && (
+              <a
+                href={social.facebook}
+                target="_blank"
+                rel="noopener"
+                aria-label="Facebook"
+              >
+                f
+              </a>
+            )}
+            {social.instagram && (
+              <a
+                href={social.instagram}
+                target="_blank"
+                rel="noopener"
+                aria-label="Instagram"
+              >
+                ◎
+              </a>
+            )}
+            {social.tiktok && (
+              <a
+                href={social.tiktok}
+                target="_blank"
+                rel="noopener"
+                aria-label="TikTok"
+              >
+                ♪
+              </a>
+            )}
             <a href={WA} target="_blank" rel="noopener" aria-label="WhatsApp">
               ✆
             </a>

@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { LanguageProvider } from "@/components/LanguageProvider";
 import RevealObserver from "@/components/RevealObserver";
-import WhatsAppFloat from "@/components/WhatsAppFloat";
+import SocialFloat from "@/components/SocialFloat";
+import { loadSocialLinks } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "SIGN FUTURE ADVERTISING — 3D LED Signboards, Malaysia",
@@ -17,11 +18,12 @@ const s3Host =
     ? `https://${process.env.S3_BUCKET}.s3.${process.env.S3_REGION}.amazonaws.com`
     : null;
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const social = await loadSocialLinks();
   return (
     <html lang="en" data-lang="en">
       <head>
@@ -45,7 +47,7 @@ export default function RootLayout({
       <body id="top">
         <LanguageProvider>
           {children}
-          <WhatsAppFloat />
+          <SocialFloat social={social} />
           <RevealObserver />
         </LanguageProvider>
       </body>
