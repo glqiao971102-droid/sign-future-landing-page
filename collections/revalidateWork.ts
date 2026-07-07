@@ -10,6 +10,8 @@ import { revalidatePath } from "next/cache";
 const revalidateWork = () => {
   try {
     revalidatePath("/work");
+    // Also refresh every /work/[slug] category page.
+    revalidatePath("/work/[slug]", "page");
   } catch (err) {
     // revalidatePath only works inside the Next.js request runtime. When Payload
     // runs outside it (CLI, seed scripts) just skip — the 5-min fallback covers it.

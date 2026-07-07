@@ -6,34 +6,39 @@ import Nav from "./Nav";
 import Trans from "./Trans";
 import PageTitle from "./PageTitle";
 import { useLang } from "./LanguageProvider";
+import type { WorkCategory } from "@/lib/gallery";
 
-export type GalleryImage = { url: string; alt: string };
+export type { WorkCategory } from "@/lib/gallery";
 
-export type WorkCategory = {
-  slug: string;
-  labelEn: string;
-  labelZh: string;
-  subEn: string;
-  subZh: string;
-  images: GalleryImage[];
-};
-
-function Gal({ image }: { image: GalleryImage }) {
+function CategoryCard({ category }: { category: WorkCategory }) {
+  const { lang } = useLang();
   const [broken, setBroken] = useState(false);
+
+  const label = (lang === "zh" ? category.labelZh : category.labelEn) || category.labelEn;
+  const sub = (lang === "zh" ? category.subZh : category.subEn) || "";
+  const cover = category.images[0]?.url;
+  const count = category.images.length;
+
   return (
-    <a className={`gal${broken ? " noimg" : ""}`}>
-      {!broken && (
-        // eslint-disable-next-line @next/next/no-img-element
-        <img
-          src={image.url}
-          alt={image.alt}
-          loading="lazy"
-          decoding="async"
-          onError={() => setBroken(true)}
-        />
-      )}
-      <span className="gal-add">{image.alt || "image"}</span>
-    </a>
+    <Link href={`/work/${category.slug}`} className="cat-card">
+      <div className={`cat-card-img${!cover || broken ? " noimg" : ""}`}>
+        {cover && !broken && (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src={cover}
+            alt={label}
+            loading="lazy"
+            decoding="async"
+            onError={() => setBroken(true)}
+          />
+        )}
+        {count > 0 && <span className="cat-card-count">{count}</span>}
+      </div>
+      <div className="cat-card-body">
+        <h2>{label}</h2>
+        {sub && <p>{sub}</p>}
+      </div>
+    </Link>
   );
 }
 
@@ -44,12 +49,14 @@ export default function WorkContent({
 }) {
   const { lang, t } = useLang();
   const [query, setQuery] = useState("");
-  const [active, setActive] = useState<string | null>(null);
 
   const q = query.trim().toLowerCase();
   const labelOf = (c: WorkCategory) =>
     (lang === "zh" ? c.labelZh : c.labelEn) || c.labelEn;
-  const subOf = (c: WorkCategory) => (lang === "zh" ? c.subZh : c.subEn) || "";
+
+  const visible = categories.filter(
+    (c) => !q || labelOf(c).toLowerCase().includes(q),
+  );
 
   return (
     <>
@@ -62,66 +69,27 @@ export default function WorkContent({
         <Trans id="pg.sub" as="p" />
       </div>
 
-      <div className="wrap work-layout">
-        <aside className="work-side">
-          <Trans id="cat.heading" as="h3" />
-          <input
-            type="text"
-            className="cat-search"
-            placeholder={t("cat.searchph")}
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-          />
-          <nav className="cat-nav">
-            {categories.map((c) => {
-              const label = labelOf(c);
-              const hidden = !!q && !label.toLowerCase().includes(q);
-              return (
-                <a
-                  key={c.slug}
-                  href={`#${c.slug}`}
-                  className={
-                    [hidden ? "hide" : "", active === c.slug ? "active" : ""]
-                      .filter(Boolean)
-                      .join(" ") || undefined
-                  }
-                  onClick={() => setActive(c.slug)}
-                >
-                  {label}
-                </a>
-              );
-            })}
-          </nav>
-        </aside>
+      <div className="wrap" style={{ marginTop: 34 }}>
+        <input
+          type="text"
+          className="cat-search"
+          style={{ maxWidth: 360 }}
+          placeholder={t("cat.searchph")}
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+        />
 
-        <main className="work-main">
-          {categories.map((c) => {
-            const label = labelOf(c);
-            const hideSection = !!q && !label.toLowerCase().includes(q);
-            return (
-              <section
-                className="cat"
-                id={c.slug}
-                key={c.slug}
-                style={hideSection ? { display: "none" } : undefined}
-              >
-                <div className="cat-head">
-                  <h2>{label}</h2>
-                  {subOf(c) && <span>{subOf(c)}</span>}
-                </div>
-                {c.images.length > 0 ? (
-                  <div className="cat-grid">
-                    {c.images.map((img, i) => (
-                      <Gal key={img.url + i} image={img} />
-                    ))}
-                  </div>
-                ) : (
-                  <p className="cat-empty">{t("cat.empty")}</p>
-                )}
-              </section>
-            );
-          })}
-        </main>
+        {visible.length > 0 ? (
+          <div className="cat-card-grid">
+            {visible.map((c) => (
+              <CategoryCard key={c.slug} category={c} />
+            ))}
+          </div>
+        ) : (
+          <p className="cat-empty" style={{ marginTop: 30 }}>
+            {t("cat.empty")}
+          </p>
+        )}
       </div>
 
       <footer className="mini-footer" style={{ marginTop: 70 }}>

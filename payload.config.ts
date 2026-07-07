@@ -47,7 +47,13 @@ export default buildConfig({
           // added an extra hop (browser → server → S3 → server → browser, ~1s
           // cold) and sent no cache headers, so images reloaded on every visit.
           disablePayloadAccessControl: true,
-          generateFileURL: ({ filename, prefix }) => {
+          generateFileURL: ({
+            filename,
+            prefix,
+          }: {
+            filename: string;
+            prefix?: string;
+          }) => {
             const bucket = process.env.S3_BUCKET || "";
             const region = process.env.S3_REGION || "";
             const key = [prefix, filename].filter(Boolean).join("/");
