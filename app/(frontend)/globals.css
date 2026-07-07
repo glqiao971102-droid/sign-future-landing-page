@@ -58,6 +58,20 @@ img { display: block; max-width: 100%; }
 .lang i { color: var(--line-2); font-style: normal; }
 .nav-right .btn { padding: 10px 18px; font-size: 13px; }
 
+/* Hamburger button — hidden on desktop, shown on mobile via media query */
+.nav-toggle { display: none; flex-direction: column; justify-content: center; gap: 5px; width: 44px; height: 44px; padding: 10px; border: 1px solid var(--line-2); border-radius: 10px; background: none; cursor: pointer; }
+.nav-toggle span { display: block; height: 2px; width: 100%; background: var(--gold-lite); border-radius: 2px; transition: transform .25s, opacity .2s; }
+.nav-toggle.is-open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-toggle.is-open span:nth-child(2) { opacity: 0; }
+.nav-toggle.is-open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* Mobile dropdown menu — hidden until opened (and never shown on desktop) */
+.nav-mobile { display: none; border-top: 1px solid var(--line); background: rgba(12, 11, 9, 0.98); backdrop-filter: blur(12px); }
+.nav-mobile .wrap { display: flex; flex-direction: column; padding-top: 8px; padding-bottom: 16px; }
+.nav-mobile a { padding: 14px 4px; font-size: 15px; font-weight: 700; letter-spacing: 1px; color: var(--text); border-bottom: 1px solid var(--line); }
+.nav-mobile a.active { color: var(--gold-lite); }
+.nav-mobile a.btn { margin-top: 14px; border-bottom: none; justify-content: center; }
+
 /* ---- Hero ---- */
 .hero { position: relative; min-height: 78svh; overflow: hidden; background: #0a0907; }
 .hero-fallback { position: absolute; inset: 0; z-index: 0; background: radial-gradient(ellipse 70% 60% at 60% 40%, rgba(224,166,78,.16), transparent 60%), var(--bg); }
@@ -253,7 +267,10 @@ section.block { position: relative; padding: 90px 0; border-top: 1px solid rgba(
 /* ---- Home Responsive ---- */
 @media (max-width: 960px) {
   .nav-links { display: none; }
-  .nav-right { margin-left: auto; }
+  .nav-right { margin-left: auto; gap: 14px; }
+  .nav-quote { display: none; }      /* moved into the mobile menu */
+  .nav-toggle { display: inline-flex; }
+  .nav-mobile.open { display: block; }
   .feature-row { grid-template-columns: 1fr 1fr; }
   .product-grid, .work-grid { grid-template-columns: 1fr 1fr; }
   .aud-grid { grid-template-columns: repeat(4, 1fr); gap: 28px 12px; }
