@@ -8,7 +8,7 @@ import { WHATSAPP_NUMBER } from "@/lib/i18n";
 export default function Nav({
   active,
 }: {
-  active?: "home" | "work" | "contact";
+  active?: "home" | "about" | "work" | "contact";
 }) {
   const { lang, setLang, t } = useLang();
   const [open, setOpen] = useState(false);
@@ -27,7 +27,12 @@ export default function Nav({
         </Link>
         <nav className="nav-links">
           <Link href="/">{t("nav.home")}</Link>
-          <Link href="/#about">{t("nav.about")}</Link>
+          <Link
+            href="/about"
+            className={active === "about" ? "active" : undefined}
+          >
+            {t("nav.about")}
+          </Link>
           <Link href="/work" className={active === "work" ? "active" : undefined}>
             {t("nav.work")}
           </Link>
@@ -84,7 +89,11 @@ export default function Nav({
           <Link href="/" onClick={close}>
             {t("nav.home")}
           </Link>
-          <Link href="/#about" onClick={close}>
+          <Link
+            href="/about"
+            className={active === "about" ? "active" : undefined}
+            onClick={close}
+          >
             {t("nav.about")}
           </Link>
           <Link

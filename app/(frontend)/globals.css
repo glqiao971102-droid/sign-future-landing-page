@@ -172,6 +172,27 @@ section.block { position: relative; padding: 90px 0; border-top: 1px solid rgba(
 .aud-thumb.has-img .a-ico { display: none; }
 .aud-label { display: block; margin-top: 14px; font-size: 15px; font-weight: 700; color: var(--text); }
 
+/* ---- Home showcase cards (admin-managed "Who Is It For?" grid) ---- */
+.show-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-top: 48px; }
+.show-card { border: 1px solid var(--line); border-radius: 14px; overflow: hidden; background: linear-gradient(160deg, rgba(255,255,255,.04), rgba(255,255,255,.01)); display: flex; flex-direction: column; transition: border-color .3s, transform .3s, box-shadow .3s; }
+.show-card:hover { border-color: var(--line-2); transform: translateY(-4px); box-shadow: var(--glow); }
+.show-img { display: block; width: 100%; padding: 0; border: none; border-bottom: 1px solid var(--line); position: relative; aspect-ratio: 4 / 3; overflow: hidden; cursor: pointer; background: radial-gradient(circle at 50% 34%, rgba(224,166,78,.2), transparent 62%), linear-gradient(160deg, #1b150d, #0e0b08); }
+.show-img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .5s; }
+.show-card:hover .show-img img { transform: scale(1.06); }
+.show-img:hover .gal-zoom { opacity: 1; }
+.show-body { padding: 14px 16px 16px; }
+.show-body h3 { font-size: 16px; font-weight: 800; color: var(--gold-lite); line-height: 1.3; overflow-wrap: break-word; }
+.show-desc { margin-top: 5px; color: var(--text); font-size: 13px; line-height: 1.5; overflow-wrap: break-word; }
+.show-body .item-meta { margin-top: 12px; }
+@media (max-width: 960px) { .show-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 700px) { .show-grid { grid-template-columns: 1fr 1fr; gap: 12px; } }
+@media (max-width: 560px) {
+  .show-grid { gap: 10px; }
+  .show-body { padding: 10px 11px 12px; }
+  .show-body h3 { font-size: 13px; }
+  .show-body p { font-size: 11px; margin-top: 4px; }
+}
+
 /* ---- Process ---- */
 .steps { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; margin-top: 56px; }
 .step { border: 1px solid var(--line); border-radius: 14px; overflow: hidden; background: var(--card); transition: border-color .3s, transform .3s; }

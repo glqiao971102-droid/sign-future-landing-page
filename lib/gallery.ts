@@ -7,6 +7,7 @@ export type GalleryImage = {
   title?: string;
   caption?: string;
   location?: string;
+  size?: string;
   businessType?: string;
   baseMaterial?: string;
   price?: string;
@@ -19,6 +20,7 @@ type RawGalleryItem = {
   alt?: string;
   caption?: string;
   location?: string;
+  size?: string;
   businessType?: string;
   businessTypeOther?: string;
   baseMaterial?: string;
@@ -83,6 +85,7 @@ async function loadImagesByCategory(): Promise<
       title: item.title,
       caption: item.caption,
       location: item.location,
+      size: item.size,
       businessType,
       baseMaterial: item.baseMaterial,
       price,

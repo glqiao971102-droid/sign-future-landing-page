@@ -72,6 +72,7 @@ export interface Config {
     categories: Category;
     'gallery-items': GalleryItem;
     'hero-slides': HeroSlide;
+    'showcase-items': ShowcaseItem;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -84,6 +85,7 @@ export interface Config {
     categories: CategoriesSelect<false> | CategoriesSelect<true>;
     'gallery-items': GalleryItemsSelect<false> | GalleryItemsSelect<true>;
     'hero-slides': HeroSlidesSelect<false> | HeroSlidesSelect<true>;
+    'showcase-items': ShowcaseItemsSelect<false> | ShowcaseItemsSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -334,6 +336,118 @@ export interface HeroSlide {
   createdAt: string;
 }
 /**
+ * Photos + details shown in the home page "Who Is It For?" grid.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "showcase-items".
+ */
+export interface ShowcaseItem {
+  id: number;
+  title: string;
+  image: number | Media;
+  /**
+   * Short line shown under the enlarged image.
+   */
+  description?: string | null;
+  /**
+   * Malaysian state / territory.
+   */
+  location?:
+    | (
+        | 'Johor'
+        | 'Kedah'
+        | 'Kelantan'
+        | 'Melaka'
+        | 'Negeri Sembilan'
+        | 'Pahang'
+        | 'Penang'
+        | 'Perak'
+        | 'Perlis'
+        | 'Sabah'
+        | 'Sarawak'
+        | 'Selangor'
+        | 'Terengganu'
+        | 'Kuala Lumpur'
+        | 'Labuan'
+        | 'Putrajaya'
+      )
+    | null;
+  /**
+   * e.g. 10ft x 3ft
+   */
+  size?: string | null;
+  businessType?:
+    | (
+        | 'Restaurant'
+        | 'Cafe'
+        | 'Bakery'
+        | 'Bar / Pub'
+        | 'Kopitiam / Mamak'
+        | 'Retail Shop'
+        | 'Boutique / Fashion'
+        | 'Minimart / Convenience Store'
+        | 'Supermarket / Grocery'
+        | 'Hair Salon'
+        | 'Beauty / Spa'
+        | 'Barbershop'
+        | 'Clinic / Medical'
+        | 'Dental Clinic'
+        | 'Pharmacy'
+        | 'Gym / Fitness'
+        | 'Automotive / Workshop'
+        | 'Car Wash'
+        | 'Hotel / Hostel'
+        | 'Education / Tuition Centre'
+        | 'Office / Corporate'
+        | 'Electronics Store'
+        | 'Hardware Store'
+        | 'Gaming / Esports'
+        | 'Property / Real Estate'
+        | 'Bank / Financial Services'
+        | 'other'
+      )
+    | null;
+  baseMaterial?:
+    | (
+        | 'Polycarbonate Base'
+        | 'Aluminum Ceiling Panel Base'
+        | 'Acrylic Base'
+        | 'ACP Base'
+        | 'Billboard Base'
+        | 'Custom Base'
+      )
+    | null;
+  /**
+   * Shown only when Business Type is set to Other.
+   */
+  businessTypeOther?: string | null;
+  price?:
+    | (
+        | 'RM1,000++'
+        | 'RM2,000++'
+        | 'RM3,000++'
+        | 'RM4,000++'
+        | 'RM5,000++'
+        | 'RM6,000++'
+        | 'RM7,000++'
+        | 'RM8,000++'
+        | 'RM9,000++'
+        | 'RM10,000++'
+        | 'custom'
+      )
+    | null;
+  /**
+   * Lower numbers show first.
+   */
+  order?: number | null;
+  /**
+   * Shown only when Price is set to Custom.
+   */
+  priceCustom?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
@@ -376,6 +490,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'hero-slides';
         value: number | HeroSlide;
+      } | null)
+    | ({
+        relationTo: 'showcase-items';
+        value: number | ShowcaseItem;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -505,6 +623,25 @@ export interface HeroSlidesSelect<T extends boolean = true> {
   image?: T;
   alt?: T;
   order?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "showcase-items_select".
+ */
+export interface ShowcaseItemsSelect<T extends boolean = true> {
+  title?: T;
+  image?: T;
+  description?: T;
+  location?: T;
+  size?: T;
+  businessType?: T;
+  baseMaterial?: T;
+  businessTypeOther?: T;
+  price?: T;
+  order?: T;
+  priceCustom?: T;
   updatedAt?: T;
   createdAt?: T;
 }

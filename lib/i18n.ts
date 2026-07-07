@@ -12,6 +12,7 @@ export const translations: Record<Lang, Dict> = {
     "title.home": "SIGN FUTURE ADVERTISING — 3D LED Signboards, Malaysia",
     "title.work": "Our Work — SIGN FUTURE ADVERTISING",
     "title.contact": "Contact Us — SIGN FUTURE ADVERTISING",
+    "title.about": "About Us — SIGN FUTURE ADVERTISING",
 
     // nav
     "nav.home": "Home",
@@ -77,7 +78,7 @@ export const translations: Record<Lang, Dict> = {
     "p4.d": "For reception areas, showrooms, offices and brand feature walls.",
 
     // audience
-    "aud.title": "Who Is It For?",
+    "aud.title": "Our Project",
     aud1: "Restaurant / Cafe",
     aud2: "Retail Store",
     aud3: "Beauty &amp; Nail",
@@ -210,6 +211,7 @@ export const translations: Record<Lang, Dict> = {
     "title.home": "SIGN FUTURE ADVERTISING — 3D 发光字招牌定制 · 马来西亚",
     "title.work": "我们的作品 — SIGN FUTURE ADVERTISING",
     "title.contact": "联系我们 — SIGN FUTURE ADVERTISING",
+    "title.about": "关于我们 — SIGN FUTURE ADVERTISING",
 
     // nav
     "nav.home": "首页",
@@ -269,7 +271,7 @@ export const translations: Record<Lang, Dict> = {
     "p4.d": "适合公司前台、展示厅、办公室和品牌形象墙。",
 
     // audience
-    "aud.title": "适合谁？",
+    "aud.title": "我们的项目",
     aud1: "餐厅 / Cafe",
     aud2: "零售店",
     aud3: "美容美甲店",

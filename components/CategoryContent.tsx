@@ -1,139 +1,12 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useState } from "react";
 import Link from "next/link";
 import Nav from "./Nav";
 import PageTitle from "./PageTitle";
 import { useLang } from "./LanguageProvider";
+import Lightbox, { metaLabel } from "./Lightbox";
 import type { WorkCategory } from "@/lib/gallery";
-
-const META_LABELS = {
-  en: {
-    location: "Location",
-    businessType: "Business Type",
-    baseMaterial: "Base Material",
-    price: "Price",
-  },
-  zh: {
-    location: "地点",
-    businessType: "行业类型",
-    baseMaterial: "材质",
-    price: "价格",
-  },
-} as const;
-
-function Lightbox({
-  images,
-  index,
-  lang,
-  onClose,
-  onNav,
-}: {
-  images: WorkCategory["images"];
-  index: number;
-  lang: "en" | "zh";
-  onClose: () => void;
-  onNav: (next: number) => void;
-}) {
-  const total = images.length;
-
-  // Keyboard controls: Esc to close, arrows to move.
-  useEffect(() => {
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
-      else if (e.key === "ArrowRight") onNav((index + 1) % total);
-      else if (e.key === "ArrowLeft") onNav((index - 1 + total) % total);
-    };
-    window.addEventListener("keydown", onKey);
-    // Prevent the page behind from scrolling while the lightbox is open.
-    document.body.style.overflow = "hidden";
-    return () => {
-      window.removeEventListener("keydown", onKey);
-      document.body.style.overflow = "";
-    };
-  }, [index, total, onClose, onNav]);
-
-  const img = images[index];
-
-  return (
-    <div className="lightbox" onClick={onClose} role="dialog" aria-modal="true">
-      <button className="lb-close" aria-label="Close" onClick={onClose}>
-        ×
-      </button>
-
-      {total > 1 && (
-        <button
-          className="lb-nav lb-prev"
-          aria-label="Previous"
-          onClick={(e) => {
-            e.stopPropagation();
-            onNav((index - 1 + total) % total);
-          }}
-        >
-          ‹
-        </button>
-      )}
-
-      {/* Stop clicks inside the figure from closing the box. */}
-      <figure className="lb-figure" onClick={(e) => e.stopPropagation()}>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img className="lb-img" src={img.url} alt={img.alt} />
-        {(img.title ||
-          img.caption ||
-          img.location ||
-          img.businessType ||
-          img.baseMaterial ||
-          img.price) && (
-          <figcaption className="lb-info">
-            {img.title && <h3>{img.title}</h3>}
-            {img.caption && <p>{img.caption}</p>}
-            <div className="lb-meta">
-              {img.location && (
-                <span>
-                  <b>{META_LABELS[lang].location}:</b> {img.location}
-                </span>
-              )}
-              {img.businessType && (
-                <span>
-                  <b>{META_LABELS[lang].businessType}:</b> {img.businessType}
-                </span>
-              )}
-              {img.baseMaterial && (
-                <span>
-                  <b>{META_LABELS[lang].baseMaterial}:</b> {img.baseMaterial}
-                </span>
-              )}
-              {img.price && (
-                <span>
-                  <b>{META_LABELS[lang].price}:</b> {img.price}
-                </span>
-              )}
-            </div>
-          </figcaption>
-        )}
-      </figure>
-
-      {total > 1 && (
-        <button
-          className="lb-nav lb-next"
-          aria-label="Next"
-          onClick={(e) => {
-            e.stopPropagation();
-            onNav((index + 1) % total);
-          }}
-        >
-          ›
-        </button>
-      )}
-
-      {total > 1 && (
-        <span className="lb-count">
-          {index + 1} / {total}
-        </span>
-      )}
-    </div>
-  );
-}
 
 export default function CategoryContent({
   category,
@@ -150,7 +23,7 @@ export default function CategoryContent({
   const close = useCallback(() => setOpen(null), []);
   const nav = useCallback((next: number) => setOpen(next), []);
 
-  const L = META_LABELS[lang === "zh" ? "zh" : "en"];
+  const L = metaLabel(lang === "zh" ? "zh" : "en");
 
   return (
     <>
@@ -171,6 +44,7 @@ export default function CategoryContent({
             {images.map((img, i) => {
               const meta = [
                 [L.location, img.location],
+                [L.size, img.size],
                 [L.businessType, img.businessType],
                 [L.baseMaterial, img.baseMaterial],
                 [L.price, img.price],
@@ -233,7 +107,7 @@ export default function CategoryContent({
 
       {open !== null && images[open] && (
         <Lightbox
-          images={images}
+          items={images}
           index={open}
           lang={lang === "zh" ? "zh" : "en"}
           onClose={close}

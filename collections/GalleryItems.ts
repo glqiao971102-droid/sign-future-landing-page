@@ -4,77 +4,12 @@ import {
   revalidateWorkAfterChange,
   revalidateWorkAfterDelete,
 } from "./revalidateWork";
-
-// Malaysian states + federal territories.
-const MALAYSIA_STATES = [
-  "Johor",
-  "Kedah",
-  "Kelantan",
-  "Melaka",
-  "Negeri Sembilan",
-  "Pahang",
-  "Penang",
-  "Perak",
-  "Perlis",
-  "Sabah",
-  "Sarawak",
-  "Selangor",
-  "Terengganu",
-  "Kuala Lumpur",
-  "Labuan",
-  "Putrajaya",
-];
-
-const BASE_MATERIALS = [
-  "Polycarbonate Base",
-  "Aluminum Ceiling Panel Base",
-  "Acrylic Base",
-  "ACP Base",
-  "Billboard Base",
-  "Custom Base",
-];
-
-const PRICE_TIERS = [
-  "RM1,000++",
-  "RM2,000++",
-  "RM3,000++",
-  "RM4,000++",
-  "RM5,000++",
-  "RM6,000++",
-  "RM7,000++",
-  "RM8,000++",
-  "RM9,000++",
-  "RM10,000++",
-];
-
-const BUSINESS_TYPES = [
-  "Restaurant",
-  "Cafe",
-  "Bakery",
-  "Bar / Pub",
-  "Kopitiam / Mamak",
-  "Retail Shop",
-  "Boutique / Fashion",
-  "Minimart / Convenience Store",
-  "Supermarket / Grocery",
-  "Hair Salon",
-  "Beauty / Spa",
-  "Barbershop",
-  "Clinic / Medical",
-  "Dental Clinic",
-  "Pharmacy",
-  "Gym / Fitness",
-  "Automotive / Workshop",
-  "Car Wash",
-  "Hotel / Hostel",
-  "Education / Tuition Centre",
-  "Office / Corporate",
-  "Electronics Store",
-  "Hardware Store",
-  "Gaming / Esports",
-  "Property / Real Estate",
-  "Bank / Financial Services",
-];
+import {
+  MALAYSIA_STATES,
+  BASE_MATERIALS,
+  PRICE_TIERS,
+  BUSINESS_TYPES,
+} from "./signageOptions";
 
 // Spaces / punctuation become hyphens; case is preserved. Matches the live
 // preview in the admin SlugField component.
