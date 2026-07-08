@@ -74,10 +74,9 @@ async function loadImagesByCategory(): Promise<
       image && typeof image === "object" ? (image.alt ?? "") : "";
     if (!url) continue;
 
-    // "Other" / "Custom" selects store the real text in a companion field.
+    // "Other" selects store the real text in a companion field.
     const businessType =
       item.businessType === "other" ? item.businessTypeOther : item.businessType;
-    const price = item.price === "custom" ? item.priceCustom : item.price;
 
     const galleryImage: GalleryImage = {
       url,
@@ -88,7 +87,6 @@ async function loadImagesByCategory(): Promise<
       size: item.size,
       businessType,
       baseMaterial: item.baseMaterial,
-      price,
     };
 
     // category is now hasMany → the image belongs to every category selected.

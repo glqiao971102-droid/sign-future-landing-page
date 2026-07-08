@@ -288,30 +288,14 @@ export interface GalleryItem {
         | 'Polycarbonate Base'
         | 'Aluminum Ceiling Panel Base'
         | 'Acrylic Base'
+        | 'PVC Base'
         | 'ACP Base'
+        | 'Wall Base'
         | 'Billboard Base'
         | 'Custom Base'
+        | 'Other Base'
       )
     | null;
-  price?:
-    | (
-        | 'RM1,000++'
-        | 'RM2,000++'
-        | 'RM3,000++'
-        | 'RM4,000++'
-        | 'RM5,000++'
-        | 'RM6,000++'
-        | 'RM7,000++'
-        | 'RM8,000++'
-        | 'RM9,000++'
-        | 'RM10,000++'
-        | 'custom'
-      )
-    | null;
-  /**
-   * Shown only when Price is set to Custom.
-   */
-  priceCustom?: string | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -412,9 +396,12 @@ export interface ShowcaseItem {
         | 'Polycarbonate Base'
         | 'Aluminum Ceiling Panel Base'
         | 'Acrylic Base'
+        | 'PVC Base'
         | 'ACP Base'
+        | 'Wall Base'
         | 'Billboard Base'
         | 'Custom Base'
+        | 'Other Base'
       )
     | null;
   /**
@@ -610,8 +597,6 @@ export interface GalleryItemsSelect<T extends boolean = true> {
   businessType?: T;
   businessTypeOther?: T;
   baseMaterial?: T;
-  price?: T;
-  priceCustom?: T;
   updatedAt?: T;
   createdAt?: T;
 }

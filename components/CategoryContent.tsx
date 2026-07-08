@@ -47,7 +47,6 @@ export default function CategoryContent({
                 [L.size, img.size],
                 [L.businessType, img.businessType],
                 [L.baseMaterial, img.baseMaterial],
-                [L.price, img.price],
               ].filter(([, v]) => v);
               return (
                 <article className="item-card" key={img.url + i}>

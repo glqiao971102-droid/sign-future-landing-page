@@ -25,9 +25,12 @@ export const BASE_MATERIALS = [
   "Polycarbonate Base",
   "Aluminum Ceiling Panel Base",
   "Acrylic Base",
+  "PVC Base",
   "ACP Base",
+  "Wall Base",
   "Billboard Base",
   "Custom Base",
+  "Other Base",
 ];
 
 export const PRICE_TIERS = [

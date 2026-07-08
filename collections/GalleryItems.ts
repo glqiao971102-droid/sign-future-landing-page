@@ -7,7 +7,6 @@ import {
 import {
   MALAYSIA_STATES,
   BASE_MATERIALS,
-  PRICE_TIERS,
   BUSINESS_TYPES,
 } from "./signageOptions";
 
@@ -134,34 +133,10 @@ export const GalleryItems: CollectionConfig = {
       },
     },
     {
-      type: "row",
-      fields: [
-        {
-          name: "baseMaterial",
-          type: "select",
-          label: "Base Material",
-          options: BASE_MATERIALS,
-          admin: { width: "50%" },
-        },
-        {
-          name: "price",
-          type: "select",
-          options: [
-            ...PRICE_TIERS,
-            { label: "Custom (type your own)", value: "custom" },
-          ],
-          admin: { width: "50%" },
-        },
-      ],
-    },
-    {
-      name: "priceCustom",
-      type: "text",
-      label: "Price (Custom)",
-      admin: {
-        condition: (data) => data?.price === "custom",
-        description: "Shown only when Price is set to Custom.",
-      },
+      name: "baseMaterial",
+      type: "select",
+      label: "Base Material",
+      options: BASE_MATERIALS,
     },
   ],
 };
