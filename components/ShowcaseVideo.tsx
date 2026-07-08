@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 /**
  * Showcase video with the animated CSS "sign lights up" fallback shown until
@@ -9,6 +9,26 @@ import { useRef, useState } from "react";
 export default function ShowcaseVideo() {
   const [hasVideo, setHasVideo] = useState(false);
   const vidRef = useRef<HTMLVideoElement>(null);
+
+  // Browsers block autoplay WITH sound, so the video starts muted. The moment
+  // the visitor does anything on the page (click / tap / scroll / key), turn
+  // the sound on at 50% — no need to press the unmute button.
+  useEffect(() => {
+    const events = ["pointerdown", "keydown", "touchstart", "wheel"] as const;
+    const enableSound = () => {
+      const v = vidRef.current;
+      if (v) {
+        v.muted = false;
+        v.volume = 0.5;
+        v.play().catch(() => {});
+      }
+      events.forEach((e) => window.removeEventListener(e, enableSound));
+    };
+    events.forEach((e) =>
+      window.addEventListener(e, enableSound, { passive: true }),
+    );
+    return () => events.forEach((e) => window.removeEventListener(e, enableSound));
+  }, []);
 
   return (
     <div
