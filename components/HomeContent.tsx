@@ -10,7 +10,10 @@ import ShowcaseVideo from "./ShowcaseVideo";
 import { useLang } from "./LanguageProvider";
 import { WHATSAPP_NUMBER } from "@/lib/i18n";
 import ShowcaseGrid from "./ShowcaseGrid";
+import ReviewsStrip from "./ReviewsStrip";
 import type { ShowcaseItem } from "@/lib/showcase";
+import type { Review } from "@/lib/reviews";
+import type { SocialLinks } from "@/lib/site";
 
 export type HeroSlide = { url: string; alt: string };
 
@@ -124,9 +127,13 @@ function AudienceCard({
 export default function HomeContent({
   heroSlides = [],
   showcase = [],
+  reviews = [],
+  site = {},
 }: {
   heroSlides?: HeroSlide[];
   showcase?: ShowcaseItem[];
+  reviews?: Review[];
+  site?: SocialLinks;
 }) {
   const { t } = useLang();
   const [ctaBroken, setCtaBroken] = useState(false);
@@ -149,6 +156,9 @@ export default function HomeContent({
       </section>
 
       {/* About */}
+      {/* Google reviews */}
+      <ReviewsStrip reviews={reviews} site={site} />
+
       {/* Audience / Showcase */}
       <section className="block" id="audience">
         <div className="wrap">

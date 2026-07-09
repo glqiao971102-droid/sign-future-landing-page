@@ -5,9 +5,12 @@ export type SocialLinks = {
   facebook?: string;
   instagram?: string;
   tiktok?: string;
+  googleReviewsUrl?: string;
+  googleRating?: string;
+  googleReviewCount?: string;
 };
 
-// Social media URLs, managed in the Site Settings global in the admin.
+// Social media URLs + Google review info, managed in the Site Settings global.
 export async function loadSocialLinks(): Promise<SocialLinks> {
   try {
     const payload = await getPayload({ config });
@@ -16,9 +19,12 @@ export async function loadSocialLinks(): Promise<SocialLinks> {
       facebook: (s?.facebook as string) || undefined,
       instagram: (s?.instagram as string) || undefined,
       tiktok: (s?.tiktok as string) || undefined,
+      googleReviewsUrl: (s?.googleReviewsUrl as string) || undefined,
+      googleRating: (s?.googleRating as string) || undefined,
+      googleReviewCount: (s?.googleReviewCount as string) || undefined,
     };
   } catch (err) {
-    console.error("[site] failed to load social links:", err);
+    console.error("[site] failed to load site settings:", err);
     return {};
   }
 }

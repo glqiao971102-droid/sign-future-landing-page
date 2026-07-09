@@ -73,6 +73,7 @@ export interface Config {
     'gallery-items': GalleryItem;
     'hero-slides': HeroSlide;
     'showcase-items': ShowcaseItem;
+    reviews: Review;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -86,6 +87,7 @@ export interface Config {
     'gallery-items': GalleryItemsSelect<false> | GalleryItemsSelect<true>;
     'hero-slides': HeroSlidesSelect<false> | HeroSlidesSelect<true>;
     'showcase-items': ShowcaseItemsSelect<false> | ShowcaseItemsSelect<true>;
+    reviews: ReviewsSelect<false> | ReviewsSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -435,6 +437,27 @@ export interface ShowcaseItem {
   createdAt: string;
 }
 /**
+ * Customer reviews shown on the home page.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "reviews".
+ */
+export interface Review {
+  id: number;
+  author: string;
+  /**
+   * 1 to 5 stars.
+   */
+  rating: number;
+  text?: string | null;
+  /**
+   * Lower numbers show first.
+   */
+  order?: number | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
@@ -481,6 +504,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'showcase-items';
         value: number | ShowcaseItem;
+      } | null)
+    | ({
+        relationTo: 'reviews';
+        value: number | Review;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -632,6 +659,18 @@ export interface ShowcaseItemsSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "reviews_select".
+ */
+export interface ReviewsSelect<T extends boolean = true> {
+  author?: T;
+  rating?: T;
+  text?: T;
+  order?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv_select".
  */
 export interface PayloadKvSelect<T extends boolean = true> {
@@ -690,6 +729,18 @@ export interface SiteSetting {
    * e.g. https://tiktok.com/@yourhandle
    */
   tiktok?: string | null;
+  /**
+   * Link to your Google reviews page (the badge links here).
+   */
+  googleReviewsUrl?: string | null;
+  /**
+   * e.g. "4.8"
+   */
+  googleRating?: string | null;
+  /**
+   * e.g. "50"
+   */
+  googleReviewCount?: string | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -701,6 +752,9 @@ export interface SiteSettingsSelect<T extends boolean = true> {
   facebook?: T;
   instagram?: T;
   tiktok?: T;
+  googleReviewsUrl?: T;
+  googleRating?: T;
+  googleReviewCount?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

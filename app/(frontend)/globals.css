@@ -193,6 +193,36 @@ section.block { position: relative; padding: 90px 0; border-top: 1px solid rgba(
   .show-body p { font-size: 11px; margin-top: 4px; }
 }
 
+/* ---- Google reviews strip ---- */
+.reviews-strip { padding: 40px 0 10px; }
+.reviews-inner { display: flex; align-items: center; gap: 20px; }
+.rev-carousel { flex: 1 1 auto; min-width: 0; display: flex; align-items: center; gap: 10px; }
+.rev-arrow { flex: 0 0 auto; width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--line-2); background: rgba(255,255,255,.04); color: var(--gold-lite); font-size: 24px; line-height: 1; cursor: pointer; display: grid; place-items: center; transition: background .2s, border-color .2s; }
+.rev-arrow:hover { background: rgba(224,166,78,.16); border-color: var(--gold); }
+.rev-badge { flex: 0 0 auto; width: 180px; display: flex; flex-direction: column; align-items: center; gap: 4px; text-align: center; padding: 6px 8px; }
+.rev-badge-title { font-size: 22px; font-weight: 800; color: var(--text); }
+.rev-based { color: var(--muted); font-size: 12.5px; }
+.rev-based b, .rev-badge-title + .rev-stars { margin: 2px 0; }
+.rev-google { display: inline-flex; align-items: center; gap: 6px; margin-top: 4px; font-size: 14px; font-weight: 700; color: var(--muted); }
+.rev-stars { display: inline-flex; gap: 2px; font-size: 16px; line-height: 1; color: #4a4437; }
+.rev-stars span.on { color: #f5a623; }
+.rev-track { flex: 1 1 auto; min-width: 0; display: flex; gap: 16px; overflow-x: auto; padding: 6px 2px 16px; scroll-snap-type: x mandatory; scrollbar-width: thin; }
+.rev-track::-webkit-scrollbar { height: 8px; }
+.rev-track::-webkit-scrollbar-thumb { background: var(--line-2); border-radius: 8px; }
+.rev-card { flex: 0 0 calc((100% - 32px) / 3); scroll-snap-align: start; background: #fbfbfa; color: #1d1c1a; border-radius: 12px; padding: 16px 18px; box-shadow: 0 6px 20px rgba(0,0,0,.25); }
+.rev-card-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.rev-card-head b { font-size: 15px; font-weight: 700; color: #1d1c1a; }
+.rev-card .rev-stars { margin-top: 8px; }
+.rev-card p { margin-top: 8px; color: #444; font-size: 13.5px; line-height: 1.55; }
+@media (max-width: 720px) {
+  .reviews-inner { flex-direction: column; align-items: stretch; gap: 10px; }
+  .rev-badge { flex-direction: row; justify-content: center; flex-wrap: wrap; gap: 8px; width: auto; }
+  .rev-badge-title { font-size: 18px; }
+  .rev-arrow { width: 34px; height: 34px; font-size: 20px; }
+  .rev-carousel { gap: 6px; }
+  .rev-card { flex-basis: 80%; }
+}
+
 /* ---- Process ---- */
 .steps { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; margin-top: 56px; }
 .step { border: 1px solid var(--line); border-radius: 14px; overflow: hidden; background: var(--card); transition: border-color .3s, transform .3s; }
@@ -439,6 +469,9 @@ section.block { position: relative; padding: 90px 0; border-top: 1px solid rgba(
 .contact-grid { display: grid; grid-template-columns: 1fr 1.05fr; gap: 30px; align-items: start; margin: 50px auto; }
 .card { border: 1px solid var(--line); border-radius: 18px; background: linear-gradient(160deg, rgba(255,255,255,.04), rgba(255,255,255,.01)); padding: 32px; }
 .card h2 { font-size: 22px; font-weight: 800; }
+.company-line { margin-top: 12px; padding-bottom: 4px; }
+.company-line b { display: block; color: var(--gold-lite); font-size: 15px; font-weight: 800; letter-spacing: .3px; }
+.company-line span { display: block; color: var(--muted); font-size: 12.5px; margin-top: 2px; }
 .cinfo { list-style: none; margin: 22px 0 0; padding: 0; display: grid; gap: 18px; }
 .cinfo li { display: flex; gap: 14px; align-items: flex-start; font-size: 15px; }
 .ci-ico { width: 44px; height: 44px; flex: none; display: grid; place-items: center; border-radius: 12px; color: #fff; background: linear-gradient(135deg, #e6b25a, #c47f2a); box-shadow: 0 0 16px rgba(224,166,78,.35); }

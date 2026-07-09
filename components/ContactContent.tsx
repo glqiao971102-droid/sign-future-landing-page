@@ -46,6 +46,10 @@ export default function ContactContent({
         {/* Left: info */}
         <div className="card">
           <Trans id="ct.reach" as="h2" />
+          <div className="company-line">
+            <b>SIGN FUTURE INDUSTRY SDN BHD</b>
+            <span>202101003599 (1403897-U)</span>
+          </div>
           <ul className="cinfo">
             <li>
               <span className="ci-ico">

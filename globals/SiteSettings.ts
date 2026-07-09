@@ -41,5 +41,27 @@ export const SiteSettings: GlobalConfig = {
       label: "TikTok URL",
       admin: { description: "e.g. https://tiktok.com/@yourhandle" },
     },
+    {
+      name: "googleReviewsUrl",
+      type: "text",
+      label: "Google Reviews URL",
+      admin: {
+        description: "Link to your Google reviews page (the badge links here).",
+      },
+    },
+    {
+      name: "googleRating",
+      type: "text",
+      label: "Google Rating",
+      defaultValue: "4.8",
+      admin: { description: 'e.g. "4.8"' },
+    },
+    {
+      name: "googleReviewCount",
+      type: "text",
+      label: "Google Review Count",
+      defaultValue: "50",
+      admin: { description: 'e.g. "50"' },
+    },
   ],
 };
