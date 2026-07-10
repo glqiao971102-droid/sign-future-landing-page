@@ -11,6 +11,8 @@ export type SocialLinks = {
   gtmId?: string;
   ga4Id?: string;
   googleSiteVerification?: string;
+  customHeadCode?: string;
+  customBodyCode?: string;
 };
 
 // Social media URLs, Google review info, and analytics IDs — all from the
@@ -34,6 +36,9 @@ export async function loadSocialLinks(): Promise<SocialLinks> {
       gtmId: clean(s?.gtmId),
       ga4Id: clean(s?.ga4Id),
       googleSiteVerification: clean(s?.googleSiteVerification),
+      // Code fields are left exactly as pasted (not trimmed).
+      customHeadCode: (s?.customHeadCode as string) || undefined,
+      customBodyCode: (s?.customBodyCode as string) || undefined,
     };
   } catch (err) {
     console.error("[site] failed to load site settings:", err);

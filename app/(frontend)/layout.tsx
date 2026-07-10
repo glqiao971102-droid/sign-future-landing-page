@@ -5,6 +5,7 @@ import RevealObserver from "@/components/RevealObserver";
 import SocialFloat from "@/components/SocialFloat";
 import Analytics, { GtmNoScript } from "@/components/Analytics";
 import LeadTracking from "@/components/LeadTracking";
+import CustomCode from "@/components/CustomCode";
 import { loadSocialLinks } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -61,6 +62,8 @@ export default async function RootLayout({
         </LanguageProvider>
         <Analytics gtmId={social.gtmId} ga4Id={social.ga4Id} />
         <LeadTracking />
+        <CustomCode code={social.customHeadCode} target="head" />
+        <CustomCode code={social.customBodyCode} target="body" />
       </body>
     </html>
   );

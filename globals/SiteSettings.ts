@@ -90,5 +90,23 @@ export const SiteSettings: GlobalConfig = {
           'The content value from the "google-site-verification" meta tag Google gives you.',
       },
     },
+    {
+      name: "customHeadCode",
+      type: "textarea",
+      label: "Custom Head Code",
+      admin: {
+        description:
+          "Advanced: raw HTML/script injected into <head> on every page (e.g. Google Ads tags). Only paste code from people you trust.",
+      },
+    },
+    {
+      name: "customBodyCode",
+      type: "textarea",
+      label: "Custom Body Code (footer)",
+      admin: {
+        description:
+          "Advanced: raw HTML/script injected at the end of <body> on every page.",
+      },
+    },
   ],
 };

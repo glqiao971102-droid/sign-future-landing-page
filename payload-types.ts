@@ -753,6 +753,14 @@ export interface SiteSetting {
    * The content value from the "google-site-verification" meta tag Google gives you.
    */
   googleSiteVerification?: string | null;
+  /**
+   * Advanced: raw HTML/script injected into <head> on every page (e.g. Google Ads tags). Only paste code from people you trust.
+   */
+  customHeadCode?: string | null;
+  /**
+   * Advanced: raw HTML/script injected at the end of <body> on every page.
+   */
+  customBodyCode?: string | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -770,6 +778,8 @@ export interface SiteSettingsSelect<T extends boolean = true> {
   gtmId?: T;
   ga4Id?: T;
   googleSiteVerification?: T;
+  customHeadCode?: T;
+  customBodyCode?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
