@@ -3,6 +3,7 @@ import "./globals.css";
 import { LanguageProvider } from "@/components/LanguageProvider";
 import RevealObserver from "@/components/RevealObserver";
 import SocialFloat from "@/components/SocialFloat";
+import Analytics, { GtmNoScript } from "@/components/Analytics";
 import { loadSocialLinks } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -27,6 +28,12 @@ export default async function RootLayout({
   return (
     <html lang="en" data-lang="en">
       <head>
+        {social.googleSiteVerification && (
+          <meta
+            name="google-site-verification"
+            content={social.googleSiteVerification}
+          />
+        )}
         {s3Host && (
           <>
             <link rel="preconnect" href={s3Host} crossOrigin="" />
@@ -45,11 +52,13 @@ export default async function RootLayout({
         />
       </head>
       <body id="top">
+        <GtmNoScript gtmId={social.gtmId} />
         <LanguageProvider>
           {children}
           <SocialFloat social={social} />
           <RevealObserver />
         </LanguageProvider>
+        <Analytics gtmId={social.gtmId} ga4Id={social.ga4Id} />
       </body>
     </html>
   );

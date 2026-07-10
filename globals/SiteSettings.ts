@@ -63,5 +63,32 @@ export const SiteSettings: GlobalConfig = {
       defaultValue: "50",
       admin: { description: 'e.g. "50"' },
     },
+    {
+      name: "gtmId",
+      type: "text",
+      label: "Google Tag Manager ID",
+      admin: {
+        description:
+          'Format "GTM-XXXXXXX". If you load GA4 through GTM, leave the GA4 field below empty.',
+      },
+    },
+    {
+      name: "ga4Id",
+      type: "text",
+      label: "GA4 Measurement ID",
+      admin: {
+        description:
+          'Format "G-XXXXXXXXXX". Only fill this if you are NOT already loading GA4 via Tag Manager.',
+      },
+    },
+    {
+      name: "googleSiteVerification",
+      type: "text",
+      label: "Google Search Console verification",
+      admin: {
+        description:
+          'The content value from the "google-site-verification" meta tag Google gives you.',
+      },
+    },
   ],
 };

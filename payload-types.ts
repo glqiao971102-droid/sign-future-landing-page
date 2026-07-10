@@ -741,6 +741,18 @@ export interface SiteSetting {
    * e.g. "50"
    */
   googleReviewCount?: string | null;
+  /**
+   * Format "GTM-XXXXXXX". If you load GA4 through GTM, leave the GA4 field below empty.
+   */
+  gtmId?: string | null;
+  /**
+   * Format "G-XXXXXXXXXX". Only fill this if you are NOT already loading GA4 via Tag Manager.
+   */
+  ga4Id?: string | null;
+  /**
+   * The content value from the "google-site-verification" meta tag Google gives you.
+   */
+  googleSiteVerification?: string | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -755,6 +767,9 @@ export interface SiteSettingsSelect<T extends boolean = true> {
   googleReviewsUrl?: T;
   googleRating?: T;
   googleReviewCount?: T;
+  gtmId?: T;
+  ga4Id?: T;
+  googleSiteVerification?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

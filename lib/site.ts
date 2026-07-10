@@ -8,9 +8,13 @@ export type SocialLinks = {
   googleReviewsUrl?: string;
   googleRating?: string;
   googleReviewCount?: string;
+  gtmId?: string;
+  ga4Id?: string;
+  googleSiteVerification?: string;
 };
 
-// Social media URLs + Google review info, managed in the Site Settings global.
+// Social media URLs, Google review info, and analytics IDs — all from the
+// Site Settings global.
 export async function loadSocialLinks(): Promise<SocialLinks> {
   try {
     const payload = await getPayload({ config });
@@ -22,6 +26,9 @@ export async function loadSocialLinks(): Promise<SocialLinks> {
       googleReviewsUrl: (s?.googleReviewsUrl as string) || undefined,
       googleRating: (s?.googleRating as string) || undefined,
       googleReviewCount: (s?.googleReviewCount as string) || undefined,
+      gtmId: (s?.gtmId as string) || undefined,
+      ga4Id: (s?.ga4Id as string) || undefined,
+      googleSiteVerification: (s?.googleSiteVerification as string) || undefined,
     };
   } catch (err) {
     console.error("[site] failed to load site settings:", err);
