@@ -28,6 +28,7 @@ export default function ContactContent({
       "Email: " + (d.get("email") || "") + "\n" +
       "Service: " + (d.get("service") || "") + "\n" +
       "Message: " + (d.get("msg") || "");
+    window.gtag?.("event", "generate_lead", { method: "whatsapp_form" });
     window.open(`${WA}?text=` + encodeURIComponent(text), "_blank");
   };
 
