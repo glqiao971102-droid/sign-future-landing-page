@@ -19,16 +19,21 @@ export async function loadSocialLinks(): Promise<SocialLinks> {
   try {
     const payload = await getPayload({ config });
     const s = await payload.findGlobal({ slug: "site-settings" });
+    // Trim stray whitespace so a copy-paste space can't break the tag IDs.
+    const clean = (v: unknown) => {
+      const t = typeof v === "string" ? v.trim() : "";
+      return t || undefined;
+    };
     return {
-      facebook: (s?.facebook as string) || undefined,
-      instagram: (s?.instagram as string) || undefined,
-      tiktok: (s?.tiktok as string) || undefined,
-      googleReviewsUrl: (s?.googleReviewsUrl as string) || undefined,
-      googleRating: (s?.googleRating as string) || undefined,
-      googleReviewCount: (s?.googleReviewCount as string) || undefined,
-      gtmId: (s?.gtmId as string) || undefined,
-      ga4Id: (s?.ga4Id as string) || undefined,
-      googleSiteVerification: (s?.googleSiteVerification as string) || undefined,
+      facebook: clean(s?.facebook),
+      instagram: clean(s?.instagram),
+      tiktok: clean(s?.tiktok),
+      googleReviewsUrl: clean(s?.googleReviewsUrl),
+      googleRating: clean(s?.googleRating),
+      googleReviewCount: clean(s?.googleReviewCount),
+      gtmId: clean(s?.gtmId),
+      ga4Id: clean(s?.ga4Id),
+      googleSiteVerification: clean(s?.googleSiteVerification),
     };
   } catch (err) {
     console.error("[site] failed to load site settings:", err);
